@@ -1,0 +1,43 @@
+
+/*
+author :Cxx
+time  :0921/16
+
+*/
+//提示方法
+
+	// 错误提示
+	function warnshow(obj, text) { obj.html("<i class='wzfont regirest-warn-icon2'>&#xe60e;<span class='register-warn-text'>" + text + "</span></i>"); }
+	// 关闭错误提示
+	function closewarnshow(obj, text) { obj.html(text); }
+	// 显示正确  //html代码：<div class="left regirest-warn-success register-success-ucode"><i class='wzfont regirest-warn-icon1'>&#xe60d;</i></div>
+	function successShow(obj) { obj.css("visibility", "visible"); } 
+	// 关闭正确
+	function successClose(obj) { obj.css("visibility", "hidden"); }
+
+
+//提示语消失
+
+$(".user-register-form").delegate("input", "focusin focusout", function(e) {
+	if (e.type === "focusin") {
+		$(this).parents(".register-item").addClass("on").find("i").addClass("color-ffb923");
+	var input_Index = $(this).data("index");
+	if (input_Index === 3) {
+		closewarnshow($(this).parents('.register-input-nitem').find('.regirest-warn-h30'), "<span class='register-warn-content'>6-16位数字或字母组合，用于平台登录</span>");
+	}else {
+		closewarnshow($(this).parents('.register-input-nitem').find('.regirest-warn-h30'), "");
+	}
+	successClose($(this).parents('.register-input-nitem').find('.regirest-warn-success'));
+	}
+	else {
+		$(this).parents(".register-item").removeClass("on").find("i").removeClass("color-ffb923");
+	}
+});
+	
+//样式
+
+.regirest-warn-success{visibility: hidden;}
+.regirest-warn-h30{height: 30px;overflow: hidden;line-height: 30px;}
+.regirest-warn-icon1{font-size:28px;color:#3fc27c;vertical-align:middle;line-height:38px;margin-left:10px}
+.regirest-warn-icon2{font-size:22px;color:#f24b43;vertical-align:middle;margin-left:10px}
+.register-warn-text {vertical-align: middle;font-size: 12px}

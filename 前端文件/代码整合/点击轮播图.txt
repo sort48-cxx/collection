@@ -1,0 +1,48 @@
+/*
+Author :Cxx
+Time   :0921/16
+*/
+
+/*ÂÖ²¥Í¼html´úÂë*/
+<div class="clearfix div-ml100">
+	<div class="slide-left-a left slide-but" data-type="1"></div>
+	<div class="div-slide-box div-mt30 left text-align-c"><img src="img/activity4/step0.png" alt="" class="step-img-box " /></div>
+	<div class="slide-right-a left slide-but" data-type="2"></div>
+</div>
+
+
+/*ÂÖ²¥Í¼JS´úÂë*/
+
+var index_num = 0;
+$(".slide-but").click(function() {
+	var type_laction = $(this).data("type");
+	if (type_laction === 1) {
+		index_num--;
+		if (index_num === 0) {
+			$(".slide-left-a").css("visibility", "hidden");
+		} else {
+			$(".slide-right-a").css("visibility", "visible");
+		}
+	} else if (type_laction === 2) {
+		index_num++;
+		if (index_num === 4) {
+			$(".slide-right-a").css("visibility", "hidden");
+		} else {
+			$(".slide-left-a").css("visibility", "visible");
+		}
+	}
+	setActivity(index_num);
+});
+
+function setActivity(num) {
+	$(".step-img-box").attr("src", "img/activity4/step" + num + ".png");
+	$(".div-step-ul>li").each(function() {
+		$(this).removeClass("on");
+	})
+	$(".div-step-ul>li").eq(num).addClass("on");
+}
+
+/*ÂÖ²¥Í¼CSS´úÂë*/
+.slide-left-a{background-image: url('../img/activity4/9.png');width: 26px;height: 50px;overflow: hidden;background-repeat: no-repeat;background-position: center;cursor: pointer;margin-top: 230px;visibility: hidden;}
+.slide-right-a{background-image: url('../img/activity4/10.png');width: 26px;height: 50px;overflow: hidden;background-repeat: no-repeat;background-position: center;cursor: pointer;margin-top: 230px;}
+.div-slide-box{width: 840px;height:460px;overflow: hidden;border: 10px solid #ededed;margin-left: 40px;margin-right: 40px;}

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<title>还款日历</title>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <script src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+</head>
+<style>
+.user-ml30 {margin-left: 30px}
+.calendar-column-box { margin: 30px 30px 60px 30px; height: auto;}
+.calendar-column-box .calendar-left-w640 { width: 640px; overflow: hidden;}
+.calendar-column-box .calendar-left-title { height: 60px; overflow: hidden; background-color: #f7f5fa;}
+.calendar-column-box .calendar-icon { margin-left: 20px; margin-top: 15px;}
+.calendar-column-box .calendar-arrow-box { margin-top: 20px; font-size: 18px; color: #333;margin-left: 30px}
+.calendar-column-box .calendar-arrow-box span { margin: 0 20px;}
+.calendar-column-box .calendar-cir-box { margin: 22px 20px;}
+.calendar-column-box .calendar-cir-box img { margin-right: 10px;}
+.calendar-column-box table { border: 1px solid #ccc; width: 638px; height: auto;}
+.calendar-column-box table tr th { height: 40px; overflow: hidden; color: #aaa; font-size: 16px; border: 1px solid #ccc; font-weight: normal;}
+.calendar-column-box table tr td { border: 1px solid #ccc;}
+.calendar-column-box td { padding: 10px 0 0 20px; font-size: 16px; height: 70px; overflow: hidden; vertical-align: top; width: 70px;}
+.calendar-column-box td:hover { background-color: #f7f5fa; font-weight: bold; cursor: pointer;}
+.calendar-column-box .on { background-color: #f7f5fa;}
+.calendar-column-box .onToday { background-color: #feedec;}
+.calendar-column-box .onWithoutrepayment { background-color: #fff8e9;}
+.calendar-column-box .repayment-icon { display: block; margin-top: 5px;}
+.calendar-column-box .now_td { color: #333;}
+.calendar-column-box .before_td { color: #aaa;}
+.calendar-column-box .calendar-right-title { height: 85px; overflow: hidden; text-align: center; margin-top: 15px; border-bottom: 1px solid #ccc;}
+.calendar-column-box .calendar-right-title p { line-height: 150%; font-size: 16px;}
+.calendar-column-box .calendar-right-w240 { width: 238px; overflow: hidden; border: 1px solid #ccc; box-shadow: -2px 2px 3px 0 #ccc; height: auto; margin-left: -1px; position: relative;}
+.calendar-column-box .return-repayment-mes { margin-top: 20px; margin-left: 20px;}
+.calendar-column-box .return-repayment-mes p { line-height: 200%;}
+.calendar-column-box .return-repayment-text { position: absolute; bottom: 30px; left: 55px; color: #ccc;}
+.calendar-column-box .return-withoutrepayment-mes { text-align: center;}
+.calendar-column-box .return-withoutrepayment-mes img { margin: 40px 0 20px 0;}
+.calendar-column-box .todayrepayment:hover { background-color: #feedec;}
+.calendar-column-box .withoutrepayment:hover { background-color: #fff8e9;}
+</style>
+
+<body>
+    <div class="page-wrapper">
+        <div class="calendar-column-box clearfix">
+            <div class="left calendar-left-w640">
+                <div class="calendar-left-title clearfix">
+                    <div class="left"><img src="../img/calendar/calendar-icon.png" alt="" class="calendar-icon" /></div>
+                    <div class="left calendar-arrow-box">
+                        <a class="wzfont" id="previous_month">&#xe602;</a>
+                        <span class="show_date"></span>
+                        <a class="wzfont" id="after_month">&#xe601;</a></div>
+                    <div class="right calendar-cir-box clearfix">
+                        <div class="left"><img src="../img/calendar/calendar-state0.png" /><span>未还款</span></div>
+                        <div class="left user-ml30"><img src="../img/calendar/calendar-state1.png" /><span>已还款</span></div>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>日</th>
+                        <th>一</th>
+                        <th>二</th>
+                        <th>三</th>
+                        <th>四</th>
+                        <th>五</th>
+                        <th>六</th>
+                    </tr>
+                    <tbody class="calendar-td-box">
+                    </tbody>
+                </table>
+            </div>
+            <div class="left calendar-right-w240">
+                <div class="calendar-right-title">
+                    <p class="date-ym color-ffb923"></p>
+                    <p class="date-day lightblack"></p>
+                    <p class="date-weeken lightblack"></p>
+                </div>
+                <div class="return-mes-box">
+                    <!--有还款
+						<div class="return-repayment-mes color-aaa">
+							<p>还款笔数：<span>3</span> 笔</p>
+							<p>还款本金：<span>100000.00</span> 元</p>
+							<p>还款利息：<span>100000</span> 元</p>
+							<p class="return-repayment-text">节假日还款时间顺延 </p>
+						</div>
+					-->
+                    <!-- 无还款 -->
+                    <div class="return-withoutrepayment-mes">
+                        <img src="../img/calendar/calendar-withouticon.png" alt="" title="" />
+                        <p class="color-aaa">亲，您今天没有任何还款项喔! </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+$(function() {
+    var now = new Date();
+    var now_year = now.getFullYear();
+    var now_month = now.getMonth() + 1;
+    var now_day = now.getDate();
+    var now_weeken = now.getDay();
+    var today = now_year + formatDate(now_month) + formatDate(now_day);
+    var array_weeken = new Array('日', '一', '二', '三', '四', '五', '六'); //声明星期数组
+    var dataArray = ""; //存放还款数组;
+    var first_day = ""; //记录第一天
+    var last_day = ""; //记录最后一天
+    //初始化
+    $(document).ready(function() {
+        init(now_year, formatDate(now_month));
+        loadNews(now_year, formatDate(now_month), formatDate(now_day), now_weeken);
+        for (var i = 0; i < dataArray.items.length; i++) {
+            var split_date = dataArray.items[i].date.split("-");
+            var sava_date = split_date[0] + split_date[1] + split_date[2];
+            if (sava_date == today) {
+                $(".return-mes-box").html("<div class='return-repayment-mes color-aaa'><p>还款笔数：<span>" + dataArray.items[i].hkbs + "</span> 笔</p><p>还款本金：<span>" + dataArray.items[i].hkbj + "</span> 元</p><p>还款利息：<span>" + dataArray.items[i].hklx + "</span> 元</p> <p class='return-repayment-text'>节假日还款时间顺延 </p></div>");
+            }
+        }
+    });
+    // 加载日历
+    function init(year, month) {
+        $(".show_date").html(year + "-" + month);
+        init_calendar(year, month);
+        first_day = $(".calendar-td-box").find("td:first");
+        var sava_first_day = first_day.data("year") + "-" + first_day.data("month") + "-" + first_day.data("day"); //记录第一天;
+        last_day = $(".calendar-td-box").find("td:last");
+        var sava_last_day = last_day.data("year") + "-" + last_day.data("month") + "-" + last_day.data("day"); //记录最后一天;
+        console.log(sava_first_day, sava_last_day); //测试显示
+        /*
+        	请求数据 (first_day,last_day)
+         */
+        dataArray = {
+            "month": "2017-03",
+            "items": [{
+                "date": '2017-03-27',
+                "hkbs": 4,
+                "hkbj": 5000,
+                "hklx": 500,
+                "hksate": 0
+            }, {
+                "date": '2017-03-22',
+                "hkbs": 2,
+                "hkbj": 1000,
+                "hklx": 100,
+                "hksate": 0
+            }, {
+                "date": '2017-03-05',
+                "hkbs": 2,
+                "hkbj": 1000,
+                "hklx": 100,
+                "hksate": 1
+            }]
+        };
+        $(".calendar-right-w240").css('height', $(".calendar-left-w640").height() - 2);
+        setDate(dataArray);
+    }
+    // 上一个月
+    $("#previous_month").on('click', function() {
+        now_month = now_month - 1;
+        if (now_month <= 0) {
+            now_year = now_year - 1;
+            now_month = 12;
+        }
+        $(".calendar-td-box").html("");
+        init(now_year, formatDate(now_month));
+    });
+    // 下一个月
+    $("#after_month").on('click', function() {
+        now_month = now_month + 1;
+        if (now_month > 12) {
+            now_year = now_year + 1;
+            now_month = 1;
+        }
+        $(".calendar-td-box").html("");
+        init(now_year, formatDate(now_month));
+    });
+    //每个td绑定事件
+    $(document).on("click", "td", function() {
+        var target_year = $(this).data("year"),
+            target_month = $(this).data("month"),
+            target_day = $(this).data("day"),
+            target_weeken = $(this).index();
+        $(".calendar-td-box").find('td').each(function() {
+            $(this).removeClass("on onToday onWithoutrepayment");
+        });
+        if ($(this).hasClass('todayrepayment')) {
+            $(this).addClass('onToday');
+        } else if ($(this).hasClass('withoutrepayment')) {
+            $(this).addClass('onWithoutrepayment');
+        } else {
+            $(this).addClass("on");
+        }
+        var target_data = target_year + target_month + target_day;
+        var returnText_html = "<div class='return-withoutrepayment-mes'><img src='../img/calendar/calendar-withouticon.png' alt='' title='' /><p class='color-aaa'>亲，您今天没有任何还款项喔! </p></div>";
+        var arr_ex = dataArray.items;
+        for (var arr = 0; arr < arr_ex.length; arr++) {
+            var split_date = arr_ex[arr].date.split("-");
+            var sava_date = split_date[0] + split_date[1] + split_date[2];
+            if (target_data == sava_date) {
+                returnText_html = "<div class='return-repayment-mes color-aaa'><p>还款笔数：<span>" + arr_ex[arr].hkbs + "</span> 笔</p><p>还款本金：<span>" + arr_ex[arr].hkbj + "</span> 元</p><p>还款利息：<span>" + arr_ex[arr].hklx + "</span> 元</p> <p class='return-repayment-text'>节假日还款时间顺延 </p></div>";
+            }
+        }
+        $(".return-mes-box").html(returnText_html);
+        loadNews(target_year, target_month, target_day, target_weeken);
+    });
+    // 生成日历
+    function init_calendar(year, month) {
+        var date_after = new Date(year, month - 1, 1);
+        var first_weeken = date_after.getDay(); //获取后一个月第一天是星期几
+
+        var date_before = new Date(year, month - 1, 0);
+        var last_day = date_before.getDate(); //获取前一个月最后一天
+
+        var date_now = new Date(year, month, 0);
+        var year_now = date_now.getFullYear(); //获取年份
+        var month_now = date_now.getMonth() + 1; //获取月份
+        var month_fate = date_now.getDate(); //获取当月的天数
+
+        var first_tr = ""; //创建td
+        var other_tr = "";
+        var last_tr = "";
+
+        var residue_day = month_fate - (7 - first_weeken); //该月剩余天数
+        var end_td = (7 - first_weeken); //记录td的结束值
+        var begin_td = (7 - first_weeken + 1); //记录新tr的起始值
+
+        // 遍历上个月的天数
+        for (var last_d = (last_day - first_weeken + 1); last_d <= last_day; last_d++) {
+            first_tr += '<td class="before_td" data-year="' + year_now + '" data-month="' + formatDate((month_now - 1)) + '" data-day="' + formatDate(last_d) + '">' + last_d + '</td>';
+        }
+        // 遍历当月第一天
+        for (var now_d = 1; now_d <= (7 - first_weeken); now_d++) {
+            first_tr += '<td class="now_td" data-year="' + year_now + '" data-month="' + formatDate(month_now) + '" data-day="' + formatDate(now_d) + '">' + now_d + '</td>';
+        }
+        var first_tr_html = $("<tr>" + first_tr + "</tr>");
+        $(".calendar-td-box").append(first_tr_html);
+        //遍历当月的天数
+        for (var i = 0; i < parseInt(residue_day / 7); i++) {
+            end_td = (end_td + 7) > (month_fate - parseInt(residue_day % 7)) ? (month_fate - parseInt(residue_day % 7)) : (end_td + 7);
+            for (var j = begin_td; j <= end_td; j++) {
+                other_tr += '<td class="now_td" data-year="' + year_now + '" data-month="' + formatDate(month_now) + '" data-day="' + formatDate(j) + '">' + j + '</td>';
+            }
+            var other_tr_html = $("<tr>" + other_tr + "</tr>");
+            $(".calendar-td-box").append(other_tr_html);
+            other_tr = "";
+            begin_td = begin_td + 7;
+        }
+        // 遍历下个月的天数
+        if (month_fate - residue_day % 7 != month_fate) {
+            for (var z = month_fate - residue_day % 7 + 1; z <= month_fate; z++) {
+                last_tr += '<td class="now_td" data-year="' + year_now + '" data-month="' + formatDate(month_now) + '" data-day="' + formatDate(z) + '">' + z + '</td>';
+            }
+            for (var after_d = 1; after_d <= (7 - residue_day % 7); after_d++) {
+                last_tr += '<td class="before_td" data-year="' + year_now + '" data-month="' + formatDate((month_now + 1)) + '" data-day="' + formatDate(after_d) + '">' + after_d + '</td>';
+            }
+            var last_tr_html = $("<tr>" + last_tr + "</tr>");
+            $(".calendar-td-box").append(last_tr_html);
+        }
+    }
+    // 信息加载
+    function loadNews(year, month, day, weeken_date) {
+        var target_td = year + month + day;
+        if (target_td == today) {
+            $(".date-ym").html("(今天)");
+        } else {
+            $(".date-ym").html("(" + year + "-" + month + ")");
+        }
+        $(".date-day").html(day);
+        $(".date-weeken").html("星期" + array_weeken[weeken_date]);
+    }
+    // 添加样式
+    function setClass(date, type) {
+        $(".calendar-td-box").find('td').each(function() {
+            var search_date = $(this).data("year") + $(this).data("month") + $(this).data("day");
+            var weeken_date = $(this).index();
+            if (weeken_date == 6 || weeken_date == 0) { //周六、周日样式
+                $(this).css('color', '#aaa');
+            }
+            if (search_date == date) {
+                $(this).append('<img src="../img/calendar/calendar-state' + type + '.png" alt="" class="repayment-icon"/>');
+                if (type == 0) { //未还款
+                    $(this).addClass('withoutrepayment');
+                }
+                if (type == 2) { //当天有还款
+                    $(this).addClass('todayrepayment onToday');
+                }
+            }
+        })
+    }
+    // 加载样式
+    function setDate(dataArray) {
+        var arr_ex = dataArray.items;
+        for (var d = 0; d < arr_ex.length; d++) {
+            var split_date = arr_ex[d].date.split("-");
+            var sava_date = split_date[0] + split_date[1] + split_date[2];
+            if (sava_date == today) { //今天有还款
+                setClass(sava_date, 2);
+            } else if (arr_ex[d].hksate == 1) { //已还款
+                setClass(sava_date, 1);
+            } else if (arr_ex[d].hksate == 0) { //未还款
+                setClass(sava_date, 0);
+            }
+        }
+    }
+    // 格式化日期
+    function formatDate(date) {
+        if (date < 10) {
+            return "0" + date;
+        } else {
+            return date;
+        }
+    }
+})
+</script>
+
+</html>

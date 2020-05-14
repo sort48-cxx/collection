@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>animationDemo</title>
+</head>
+<style>
+* {padding:0;margin:0}
+
+.d1 {position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);width:100px;height:100px;overflow: hidden;}
+.clearfix {*zoom:1}
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:"";clear:both;height:0}
+.d1 span {position: absolute;width:40px;height:40px;border-radius:50%;
+animation-name:transforms;
+animation-duration:2s;
+animation-timing-function:ease;
+animation-play-state:running;
+animation-iteration-count:infinite
+}
+.d1 span:first-child {background-color:#19A68C;animation-delay:-1.5s;}
+.d1 span:nth-child(2) {background-color:#F63D3A;animation-delay:-1s;}
+.d1 span:nth-child(3) {background-color:#FDA543;animation-delay:-0.5s;} 
+.d1 span:last-child {background-color:#193B48;}
+/* @keyframes transforms {0%,100% {transform:translate(0)}
+25% {transform:translate(160%)}
+50% {transform:translate(160%,160%)}
+75% {transform:translate(0,160%)}
+} */
+@keyframes transforms {0%,100% {transform:translate(0)}
+25% {transform:translate(60px)}
+50% {transform:translate(60px,60px)}
+75% {transform:translate(0,60px)}
+}
+</style>
+
+<body>
+	<div class="d1 clearfix"><span></span><span></span><span></span><span></span></div>
+</body>
+
+</html>

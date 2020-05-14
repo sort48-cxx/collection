@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<title>jquery-表单控件-微镇</title>
+<head>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.UI.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.UI.css">
+</head>
+
+<body>
+	<div class="layout-box">
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 输入框</h2>
+			 <input type="text" class="ui-input" placeholder="输入框" />
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 输入域</h2>
+			 <textarea class="ui-input" placeholder="输入域"></textarea>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 单选-默认（Checkbox）</h2>
+			<input type="radio" name="sex" value="male" checked>Male
+			<input type="radio" name="sex" value="female">Female
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 单选-圆-css</h2>
+			<label class="ui-radio-cir">
+				<input type="checkbox" name="register-xieyi" value="1"/>
+				<span class="ul-icon"></span>
+				<span class="color-ccc">我已阅读并同意<a class="color-3fb8ff" id="check_xieyi_but">《服务协议》</a></span> 
+			</label>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 单选-方-css</h2>
+			<label class="ui-radio-squ">
+				<input type="checkbox" name="register-xieyi" value="1"/>
+				<span class="ul-icon"></span>
+				<span>我已阅读并同意<a>《服务协议》</a></span> 
+			</label>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 单选-圆-控件</h2>
+			<input type="checkbox" name="register-xieyi" value="1" id="UI-cir-radio"/>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 单选-方-控件</h2>
+			<input type="checkbox" name="register-xieyi" value="1" id="UI-squ-radio" checked/>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 按钮(Button OR Submit)-投资端</h2>
+			<input type="button" value="按钮" class="ui-button"/>
+			<input type="button" value="按钮" class="ui-button ui-botton-f24b43"/>
+			<input type="button" value="按钮" class="ui-button ui-botton-ccc"/>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 按钮(Button OR Submit)-融资端</h2>
+			<input type="button" value="按钮" class="ui-button ui-botton-50a3ed"/>
+			<input type="button" value="按钮" class="ui-button ui-botton-ff8249"/>
+			<input type="button" value="按钮" class="ui-button ui-botton-ccc"/>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 表格</h2>
+			<table class="ui-table ui-table-layout-fixed ">
+				<tr>
+					<th>标题1</th>
+					<th>标题2</th>
+				</tr>
+				<tbody>
+				<tr>
+				<td>1</td>
+				<td>2</td>
+				</tr>
+				<tr>
+				<td>2</td>
+				<td>3</td>
+				</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2">
+							tfoot
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 表格-无数据</h2>
+			<table class="ui-table ui-table-layout-fixed ">
+				<tr>
+					<th>标题1</th>
+					<th>标题2</th>
+				</tr>
+				<tbody>
+					<tr class="ui-noresult">
+						<td class="ui-noresult-content"  colspan="2">
+							无数据显示
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style="margin-bottom:10px">
+			<h2 style="margin-bottom:10px;color:#999">· 无数据</h2>
+			<div class="ui-noresult">
+			<div class="ui-noresult-content">无数据显示</div>
+			</div>
+		</div>
+
+</div>
+</body>
+<script>
+$(function(){ 
+	$("#UI-cir-radio").WZCheckbox({
+	'kindClass':'UI-radio-cir', //必填
+	"parameter":'14px',//必填
+	'addText':'我已阅读并同意',//选填
+	 
+ });
+ $("#UI-squ-radio").WZCheckbox({
+	'kindClass':'UI-radio-squ',//必填
+	"parameter":'16px',//必填
+	'addText':'我已阅读并同意',//选填
+	"iconClass":'ui-radio-icon on',//选中
+ });
+});
+
+</script>
+</html>

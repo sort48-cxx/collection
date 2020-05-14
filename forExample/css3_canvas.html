@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Page Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<canvas id="drawing" width="1000" height="1100">
+		您的浏览器不支持Canvas
+	</canvas>
+</body>
+<script>
+var drawing = document.getElementById("drawing");
+	if (drawing.getContext) {
+		var ctx = drawing.getContext("2d");
+		ctx.fillRect(25, 25, 60, 60);
+		ctx.strokeRect(100, 25, 60, 60);
+		ctx.clearRect(200, 25, 60, 60);
+	}
+</script>
+
+
+
+	// var cc = document.getElementById("mycanvas");
+	// var ct = cc.getContext("2d");
+	// /*矩形*/
+	// ct.fillRect(100, 100, 100, 100);
+	// ct.strokeRect(250, 100, 100, 100);
+
+	// /*路径*/
+	// ct.beginPath();
+	// ct.moveTo(50, 50);
+	// ct.lineTo(100, 100);
+	// ct.stroke();
+	// ct.closePath();
+
+	// /*圆弧*/
+	// ct.beginPath();
+	// ct.arc(450, 70, 10, 0, Math.PI, false);
+	// ct.stroke();
+
+	// /*二次贝塞尔曲线*/
+	// ct.beginPath();
+	// ct.moveTo(20, 20);
+	// ct.quadraticCurveTo(20, 50, 200, 20);
+	// ct.stroke();
+
+	// /*三次贝塞尔曲线*/
+	// ct.beginPath();
+	// ct.moveTo(20,20);
+	// ct.bezierCurveTo(20,100,200,100,200,20);
+	// ct.stroke();
+
+	// /*path2D*/
+	// var rectangle = new Path2D();
+	// rectangle.rect(10, 10, 50, 50);
+	// ct.stroke(rectangle);
+
+
+	// ct.beginPath(); 
+	// ct.strokeStyle="#e78170";
+	// ct.lineWidth=10;
+	// ct.lineCap="round "; //butt  - round - square 
+	// ct.moveTo(20,20);
+	// ct.lineTo(20,200);
+	// ct.stroke();
+
+	// ct.beginPath();
+	// ct.lineWidth=10;
+	// ct.lineJoin="miter"; // bevel(斜角) miter（尖角）round（圆角）
+	// ct.moveTo(20,20);
+	// ct.lineTo(100,50);
+	// ct.lineTo(20,100);
+	// ct.stroke();
+
+	/*径向渐变*/
+	// var lg=ct.createLinearGradient(50,50,250,250);
+	// lg.addColorStop(0,'yellow');
+	// lg.addColorStop(.5,'red');
+	// lg.addColorStop(1,'green');
+	// ct.fillStyle=lg;
+	// ct.fillRect(50,50,200,200);
+
+	/*图片*/
+	// var img=new Image();
+	// img.src="https://b-gold-cdn.xitu.io/v3/static/img/frontend.1dae74a.png";
+	// img.onload=function(){
+	// 	var ptrn=ct.createPattern(img,'repeat'); 
+	// 	ct.strokeStyle=ptrn; 
+	// 	ct.drawImage(img,5,5);
+	// }
+
+	/*文字*/
+	// ct.font="20px Georgia";
+	// ct.fillText("测试文字",100,100);
+
+	/*保存路径*/
+	// ct.fillStyle = "red";
+	// ct.fillRect(10, 10, 50, 50);
+	// ct.save();
+	// ct.fillStyle = "blue";
+	// ct.fillRect(20, 20, 30, 30);
+	// ct.restore();
+	// ct.fillRect(30, 30, 10, 10);
+
+	// ct.fillRect(0, 0, 100, 100);
+	// ct.save();
+	// ct.translate(60, 60);
+	// ct.fillStyle = "red";
+	// ct.fillRect(0, 0, 100, 100);
+	// ct.restore();
+	// ct.fillRect(130, 130, 10, 10);
+
+
+	// var img = new Image();
+	// img.src = "https://b-gold-cdn.xitu.io/v3/static/img/frontend.1dae74a.png";
+	// img.onload = function () {
+	// 	ct.beginPath();
+	// 	ct.arc(120, 100, 500, 0, Math.PI * 2, true);
+	// 	ct.clip();
+	// 	ct.drawImage(img, 10, 10);
+	// }
+
+	// var img = new Image();
+	// img.src = "https://b-gold-cdn.xitu.io/v3/static/img/frontend.1dae74a.png";
+	// img.onload = function () {
+	// 	ct.drawImage(img, 10, 10);
+	// 	var imgData = ct.getImageData(10, 10, 200, 300);
+	// 	var data = imgData.data;
+	// 	for (var i = 0; i < data.length; i += 4) {
+	// 		data[i] = 255 - data[i];
+	// 		data[i + 1] = 255 - data[i + 1];
+	// 		data[i + 2] = 255 - data[i + 2];
+	// 		data[i + 3] = 255;
+	// 	}
+	// 	ct.putImageData(imgData, 230, 10);
+	// }
+
+
+
+</script>
+
+
+</html>

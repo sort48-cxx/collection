@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<title>表单验证-整合-微镇</title>
+
+<head>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.from.validate.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.UI.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.from.validate.css">
+</head>
+
+<body>
+	<div class="layout-box">
+		<div style="margin-bottom:20px;" class="clearfix">
+			<h1 style="margin-bottom:10px">1.数据为空判断</h1>
+			<div class="left">
+				<input type="text" class="ui-input" placeholder="输入框" id="isempty_input" />
+				<input type="button" value="按钮" class="ui-button ui-botton-ff8249" id="isempty_but" />
+			</div>
+			<div class="validate-warn-box  validate-warn-empty left"></div>
+		</div>
+		<div style="margin-bottom:20px;" class="clearfix">
+			<h1 style="margin-bottom:10px">2.手机号检测</h1>
+			<div class="left">
+				<input type="text" class="ui-input" placeholder="输入框" id="isphone_input" />
+				<input type="button" value="按钮" class="ui-button ui-botton-ff8249" id="isphone_but" />
+			</div>
+			<div class="validate-warn-box  validate-warn-phone left"></div>
+		</div>
+		<div style="margin-bottom:20px;" class="clearfix">
+			<h1 style="margin-bottom:10px">3.输入个数检测（默认：限制6位）</h1>
+			<div class="left">
+				<input type="text" class="ui-input" placeholder="输入框" id="iscount_input" />
+				<input type="button" value="按钮" class="ui-button ui-botton-ff8249" id="iscount_but" />
+			</div>
+			<div class="validate-warn-box  validate-warn-count left"></div>
+		</div>
+		<div style="margin-bottom:20px;" class="clearfix">
+			<h1 style="margin-bottom:10px">4.金额检测（默认：保留2位小数）</h1>
+			<div class="left">
+				<input type="text" class="ui-input" placeholder="输入框" id="isamount_input" />
+				<input type="button" value="按钮" class="ui-button ui-botton-ff8249" id="isamount_but" />
+			</div>
+			<div class="validate-warn-box  validate-warn-amount left"></div>
+		</div>
+		<div style="margin-bottom:20px;" class="clearfix">
+			<h1 style="margin-bottom:10px">5.银行卡检测（默认：16位、19位、21位）</h1>
+			<div class="left">
+				<input type="text" class="ui-input" placeholder="输入框" id="isbankcard_input" />
+				<input type="button" value="按钮" class="ui-button ui-botton-ff8249" id="isbankcard_but" />
+			</div>
+			<div class="validate-warn-box  validate-warn-bankcard left"></div>
+		</div>
+		<div style="margin-bottom:20px;" class="clearfix">
+			<h1 style="margin-bottom:10px">6.身份证检测（默认：18位）</h1>
+			<div class="left">
+				<input type="text" class="ui-input" placeholder="输入框" id="isIdcard_input" />
+				<input type="button" value="按钮" class="ui-button ui-botton-ff8249" id="isIdcard_but" />
+			</div>
+			<div class="validate-warn-box  validate-warn-Idcard left"></div>
+		</div>
+	</div>
+</body>
+</html>

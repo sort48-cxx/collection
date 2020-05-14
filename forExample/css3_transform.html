@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>css3-transition</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="common.css" type="text/css" rel="stylesheet">
+</head>
+<style>
+	#box1 {
+		margin: 100px;
+		height: 100px;
+		width: 100px;
+		background: green;
+		transform: rotate(45deg); /* 旋转 */
+	}
+	#box2 {
+		margin: 100px;
+		height: 10px;
+		width: 10px;
+		background: green;
+		transform: matrix(1,2,3,4,5,6);/*矩形*/
+	}
+	#box3 {
+		margin: 100px;
+		height: 10px;
+		width: 10px;
+		background: green;
+		transform: translate(100px);/*平移*/
+		/*
+		等同于：
+		transform:translateX(100px)
+		transform:translateY(100px)
+		*/
+	}
+	#box4 {
+		margin: 100px;
+		height: 100px;
+		width: 100px;
+		background: green;
+		/*transform: scale(2,2); 缩放*/
+		/*
+		等同于：
+		transform:scaleX(1.5)
+		transform:scaleY(1.5)
+		*/
+	}
+	#box5 {
+		margin: 100px;
+		height: 100px;
+		width: 100px;
+		background: green;
+		transform: skew(30deg);/*斜切扭曲*/
+		/*
+		等同于：
+		transform:skewX(50deg)
+		transform:skewY(50deg)
+		*/
+	}
+
+
+	.box {
+        position: relative;
+        width: 200px;
+        height: 60px;
+        margin: 50px;
+        line-height: 60px;
+        text-align: center;
+		background-color: rgba(0,0,0,0.3);
+    }
+
+	.box:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background-color: #fb3;
+		transform: perspective(20px) rotatex(5deg);
+	}  
+	
+	.test{
+		margin:100px 50px;
+	}
+
+	.test .tag{
+		background-color:#fb3;
+		padding:20px;
+		text-align: center;
+		font-size:16px;
+		color:#fff;
+		display: inline-block;
+		transition: all .4s;
+	}
+	.test .tag-translate:hover{
+		transform:translate(400px);
+	}
+
+	.test .tag-scale:hover{
+		transform:scale(0.9);
+	}
+	.test .tag-rotate:hover{
+		transform:rotate(360deg);
+	}
+	.test .tag-skew:hover{
+		transform:skew(-30deg);
+	}
+</style>
+
+<body>
+	<div id="box1">旋转</div>
+	<div id="box2">矩形</div>
+	<div id="box3">平移</div>
+	<div id="box4">正常</div>
+	<div id="box5">斜切扭曲</div>
+	<div class="box">home</div>
+
+
+	<div class="test">
+
+		<div class="tag tag-translate">测试标本-translate</div>
+
+		<div class="tag tag-scale">测试标本-scale</div>
+
+		<div class="tag tag-rotate">测试标本-rotate</div>
+
+		<div class="tag tag-skew">测试标本-skew</div>
+
+	</div>
+</body>
+
+</html>

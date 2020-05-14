@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<title>移动端common</title>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="format-detection" content="email=no" />
+	<script src="../js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+</head>
+
+<style>
+html { font-size: 62.5%;}
+.public-720{max-width: 720px; margin: 0 auto;}
+.login-item-box { margin-top: .5em; padding-bottom: .5em;position: relative; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; padding-top: 0; padding-right: 0;background-color: #fff; border-bottom: 1px solid #ccc; height: 40px; overflow: hidden;}
+.login-item-name { color: #333; margin-right: 10px; margin-left: 10px; width: 20px; overflow: hidden; text-align: center;}
+.login-item-name .login-icon { width: 15px; height: 20px; overflow: hidden;vertical-align: middle;}
+.login-item-input { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;}
+.login-item-input input { width: 100%; border: 0; outline: 0; -webkit-appearance: none; background-color: transparent; font-size: inherit; color: #333; height: 43px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+
+.dialog-input-box { padding: 0 10px; height: 40px; line-height: 40px; border: 1px solid #e6e6e6; border-radius: 4px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center;margin: 10px 20px}
+ .flex-1 { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;}
+ .paw-input { height: 40px; overflow: hidden; border: 0; width: 94%; font-size: 2rem; margin: 10px 0;overflow: hidden;}
+.input-pay-but { display: inline-block; height: 44px; margin-left: 5px; padding: 0 0.6em 0 0.7em; border-left: 1px solid #E5E5E5; line-height: 44px; vertical-align: middle; font-size: 1.4rem; color: #aaa; background-color: transparent; border-top: 0; border-right: 0; border-bottom: 0; outline: 0;}
+
+.moblie-font-box{text-align: center;margin-bottom: 20px}
+
+.moblie-border-box{margin: 1em }
+.moblie-border-box .b-out{border: 1px solid #dbdbdb;height: 15px;overflow: hidden;margin-bottom: 20px}
+.moblie-border-box .b-in{border: 1px solid #e6e6e6;height: 15px;overflow: hidden;margin: 0 2em}
+</style>
+
+<body>
+    <div class="public-720">
+        <div class="login-item-box">
+            <div class="login-item-name"><img src="" alt="" class="login-icon" /></div>
+            <div class="login-item-input">
+                <input class="" type="number" placeholder="请输入手机号码" id="phone_input" />
+            </div>
+        </div>
+        <div class="dialog-input-box clearfix">
+            <div class="flex-1">
+                <input type="password" class="paw-input" />
+            </div>
+            <div class="">
+                <a href="javascript:void(0)" class="input-pay-but">支付</a>
+            </div>
+        </div>
+        <div class="moblie-font-box">
+            <p style="font-size:2.0rem ">ps42px</p>
+            <p style="font-size:1.8rem ">ps36px</p>
+            <p style="font-size:1.6rem ">ps32px</p>
+            <p style="font-size:1.4rem ">ps28px</p>
+            <p style="font-size:1.2rem ">ps24px</p>
+            <p style="font-size:1.0rem ">ps20px</p>
+        </div>
+        <div class="moblie-border-box">
+        	<div class="b-out"></div>
+			<div class="b-in"></div>
+        </div>
+
+
+    </div>
+</body>
+
+
+
+
+<script>
+$(function() {
+
+});
+</script>
+
+
+</html>

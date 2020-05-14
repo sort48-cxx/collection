@@ -1,0 +1,23 @@
+<html>
+<title>数字滚动</title>
+<body>
+<div style="width:1180px;margin:0 auto">
+<h2 style="text-align:center">数字滚动</h2>
+<div><span data-to="510" data-space="1000" class="test_obj"></span></div>  
+<div><span data-to="5100" data-space="1000" class="test_obj"></span></div>
+<div><span data-to="11000" data-space="1000" class="test_obj"></span></div> 
+<div><span data-to="511000" data-space="1000" class="test_obj"></span></div>
+<div><span data-to="5110100" data-space="1000" class="test_obj"></span></div>   
+<div><span data-to="210011000" data-space="1000" class="test_obj"></span></div>
+<div><span data-to="5210011000" data-space="100000" class="test_obj"></span></div>
+</div>
+</body>
+  <script src="../js/jquery.min.js"></script>
+  <script src='../js/jquery.roll_num.js'></script>
+   
+  <script>
+  $(function(){
+    $(".test_obj").rollNum();
+  });
+  </script>
+</html>

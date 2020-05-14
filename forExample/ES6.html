@@ -1,0 +1,290 @@
+
+<html>
+
+
+<script>
+	window.onload = function () {
+		/*
+
+		//1.concat
+		var arr1_1 = [1, 2, 3];
+		var arr1_2 = [4, 5, 6];
+		console.log("========== 1.concat ==========");
+		console.log(arr1_1.concat(arr1_2));//[1,2,3,4,5,6]
+		console.log("========== 1.concat ==========");
+
+		//2.copyWithin
+		var arr2_1 = [1, 2, 3];
+		console.log("========== 2.copyWithin ==========");
+		console.log(arr2_1.copyWithin(0, 1)); //[2,3,3]
+		console.log("========== 2.copyWithin ==========");
+
+		//3.enrties
+		var arr3_1 = [1, 2, 3];
+		console.log("========== 3.enrties ==========");
+		for (let [index, item] of arr2_1.entries()) { console.log(index, item) }; //0:1 1:2 2:3
+		console.log("========== 3.enrties ==========");
+
+		//4.every
+		var arr4_1 = [1, 2, 3];
+		console.log("========== 4.every ==========");
+		console.log(arr4_1.every(x=>x>0));//true
+		console.log("========== 4.every ==========");
+
+		//5.fill
+		var arr5_1 = [1, 2, 3];
+		console.log("========== 5.fill ==========");
+		console.log(arr5_1.fill(4,1)); //[1,4,4]
+		console.log("========== 5.fill ==========");
+
+		//6.filter
+		var arr6_1 = [1, 2, 3];
+		console.log("========== 6.filter ==========");
+		console.log(arr6_1.filter(x=>x>1)); //[2,3]
+		console.log("========== 6.filter ==========");
+
+		//7.find
+		var arr7_1 = [1, 2, 3];
+		console.log("========== 7.find ==========");
+		console.log(arr7_1.find(x=>x>1)); //[2]
+		console.log("========== 7.find ==========");
+
+		//8.findIndex
+		var arr8_1 = [1, 2, 3];
+		console.log("========== 8.findIndex ==========");
+		console.log(arr8_1.findIndex(x=>x>1)); //1
+		console.log("========== 8.findIndex ==========");
+
+		//9.flat
+		var arr9_1 = [1, 2, [3,4]];
+		console.log("========== 9.flat ==========");
+		console.log(arr9_1.flat()); //[1,2,3,4]
+		console.log("========== 9.flat ==========");
+
+		//10.flatMap
+		var arr10_1 = [1, 2, [3,4]];
+		console.log("========== 10.flatMap ==========");
+		console.log(arr10_1.flatMap(x=>console.log(x))); //1,2,[3,4]
+		console.log("========== 10.flatMap ==========");
+
+		//11.forEach
+		var arr11_1 = [1, 2,3,4];
+		console.log("========== 11.forEach ==========");
+		console.log(arr11_1.forEach(x=>console.log(x))); //[1,2,3,4]
+		console.log("========== 11.forEach ==========");
+
+		//12.includes
+		var arr12_1 = [1, 2,3,4];
+		console.log("========== 12.includes ==========");
+		console.log(arr12_1.includes(2));//true
+		console.log("========== 12.includes ==========");
+
+		//13.indexOf
+		var arr13_1 = [1, 2,3,4];
+		console.log("========== 13.indexOf ==========");
+		console.log(arr13_1.indexOf(2));//1
+		console.log("========== 13.indexOf ==========");
+
+		//14.join
+		var arr14_1 = [1,2,3,4];
+		console.log("========== 14.join ==========");
+		console.log(arr14_1.join(","));//1,2,3,4
+		console.log("========== 14.join ==========");
+
+		//15.keys
+		console.log("========== 15.keys ==========");
+		for(let key of arr14_1.keys()){console.log(key);}; //1,2,3,4
+		console.log("========== 15.keys ==========");
+
+		//16.lastIndexOf
+		console.log("========== 16.lastIndexOf ==========");
+		console.log(arr13_1.lastIndexOf(2)); //1
+		console.log("========== 16.lastIndexOf ==========");
+
+		//17.map
+		console.log("========== 17.map ==========");
+		console.log(arr13_1.map(x=>x*2));//[2,4,6,8]
+		console.log("========== 17.map ==========");
+
+		//18.pop
+		console.log("========== 18.pop ==========");
+		console.log(arr13_1.pop(),arr13_1);//4,[1,2,3]
+		console.log("========== 18.pop ==========");
+
+		//19.push
+		console.log("========== 19.push ==========");
+		console.log(arr13_1.push(5),arr13_1);//[1,2,3,5]
+		console.log("========== 19.push ==========");
+
+		//20.reduce
+		console.log("========== 20.reduce ==========");
+		console.log(arr13_1.reduce(function(a,c){
+			return a+c;
+		},0));//11
+		console.log("========== 20.reduce ==========");
+
+		//21.reduceRight
+		console.log("========== 21.reduceRight ==========");
+		console.log("！");
+		console.log("========== 21.reduceRight ==========");
+
+		//22.reverse
+		console.log("========== 22.reverse ==========");
+		console.log(arr13_1.reverse()); //[4,3,2,1]
+		console.log("========== 22.reverse ==========");
+
+		//23.shift
+		console.log("========== 23.shift ==========");
+		console.log(arr13_1.shift(),arr13_1);//1 [2,3,4]
+		console.log("========== 23.shift ==========");
+
+		//24.slice
+		console.log("========== 24.slice ==========");
+		console.log(arr13_1.slice(1));//[2,3,4]
+		console.log("========== 24.slice ==========");
+
+		//25.some
+		console.log("========== 25.some ==========");
+		console.log(arr13_1.some(x=>x>1));//true
+		console.log("========== 25.some ==========");
+
+		//26.sort
+		var arr26_1=[2,5,3,7,11,25,21]
+		console.log("========== 26.sort ==========");
+		console.log(arr26_1.sort(function(a,b){return a-b})); //[2,3,5,7,11,21,25]
+		console.log("========== 26.sort ==========");
+
+		//27.splice
+		var arr26_1=[2,5,3,7,11,25,21]
+		console.log("========== 27.splice ==========");
+		console.log(arr26_1.splice(1,0,300),arr26_1); //[2,300,5,3,7,11,25,21]
+		console.log("========== 27.splice ==========");
+
+		//28.toString
+		var arr26_1=[2,5,3,7,11,25,21]
+		console.log("========== 28.toString ==========");
+		console.log(arr26_1.toString()); //2,5,3,7,11,25,21
+		console.log("========== 28.toStringe ==========");
+
+		//29.unshift
+		var arr26_1=[2,5,3,7,11,25,21]
+		console.log("========== 29.unshift ==========");
+		console.log(arr26_1.unshift(1),arr26_1); //[1,2,5,3,7,11,25,21]
+		console.log("========== 29.unshift ==========");
+
+		//30.values
+		var arr26_1=[2,5,3,7,11,25,21]
+		console.log("========== 30.values ==========");
+		for (let item of arr26_1.values()){console.log(item)} //2,5,3,7,11,25,21
+		console.log("========== 30.values ==========");
+
+		*/
+
+		var stringTem = "This is my test string";
+
+		console.log("========== 1.charAt ==========");
+		console.log(stringTem.charAt(0)); //T
+		console.log("========== 1.charAt ==========");
+
+		console.log("========== 2.charCodeAt ==========");
+		console.log(stringTem.charCodeAt(0)); //84
+		console.log("========== 2.charCodeAt ==========");
+
+		console.log("========== 3.codePointAt ==========");
+		console.log(stringTem.codePointAt(0)); //84
+		console.log("========== 3.codePointAt ==========");
+
+		console.log("========== 4.concat ==========");
+		console.log(stringTem.concat(",and this is about concat")); // This is my test string ,and this is about concat
+		console.log("========== 4.concat ==========");
+
+		console.log("========== 5.endsWith =========="); // true;
+		console.log(stringTem.endsWith("string"));
+		console.log("========== 5.endsWith ==========");
+
+		console.log("========== 6.includes ==========");
+		console.log(stringTem.includes("string")); //true
+		console.log("========== 6.includes ==========");
+
+		console.log("========== 7.indexOf ==========");
+		console.log(stringTem.indexOf("T"));// 0
+		console.log("========== 7.indexOf ==========");
+
+		console.log("========== 8.lastIndexOf ==========");
+		console.log(stringTem.lastIndexOf("g"));//21
+		console.log("========== 8.lastIndexOf ==========");
+
+		console.log("========== 9.match ==========");
+		console.log(stringTem.match(/\w+/g));//[This,is,my,test,string]
+		console.log("========== 9.match ==========");
+
+		console.log("========== 10.padEnd ==========");
+		console.log(stringTem.padEnd(35, " about padEnd")); // This is my test string about padEnd
+		console.log("========== 10.padEnd ==========");
+
+		console.log("========== 11.padStart ==========");
+		console.log(stringTem.padStart(31, "padStart:"));
+		console.log("========== 11.padStart ==========");
+
+		console.log("========== 12.repeat ==========");
+		console.log(stringTem.repeat(2));
+		console.log("========== 12.repeat ==========");
+
+		console.log("========== 13.replace ==========");
+		console.log(stringTem.replace(/\w+/g, function (a) {
+			return a.toLocaleUpperCase();
+		}));
+		console.log("========== 13.replace ==========");
+
+		console.log("========== 14.search ==========");
+		console.log(stringTem.search("T"));
+		console.log("========== 14.search ==========");
+
+		console.log("========== 15.slice ==========");
+		console.log(stringTem.slice(10));
+		console.log("========== 15.slice ==========");
+
+		console.log("========== 16.split ==========");
+		console.log(stringTem.split(" "));
+		console.log("========== 16.split ==========");
+
+		console.log("========== 17.startsWith ==========");
+		console.log(stringTem.startsWith("This"));
+		console.log("========== 17.startsWith ==========");
+
+		console.log("========== 18.substring ==========");
+		console.log(stringTem.substring(0, 4));
+		console.log("========== 18.substring ==========");
+
+		console.log("========== 19.toLowerCase ==========");
+		console.log(stringTem.toLowerCase());
+		console.log("========== 19.toLowerCase ==========");
+
+		console.log("========== 20.toUpperCase ==========");
+		console.log(stringTem.toUpperCase());
+		console.log("========== 20.toUpperCase ==========");
+
+		console.log("========== 21.toString ==========");
+		console.log(["a", "b"].toString());
+		console.log("========== 21.toString ==========");
+
+		console.log("========== 22.trim ==========");
+		console.log(" stringTem ".trim());
+		console.log("========== 22.trim ==========");
+
+		console.log("========== 23.trimEnd ==========");
+		console.log(" stringTem ".trimEnd());
+		console.log("========== 23.trimEnd ==========");
+
+		console.log("========== 24.trimLeft ==========");
+		console.log(" stringTem ".trimLeft());
+		console.log("========== 24.trimLeft ==========");
+
+		console.log("========== 25.valueOf ==========");
+		console.log(stringTem.valueOf());
+		console.log("========== 25.valueOf ==========");
+
+	}
+</script>
+
+</html>

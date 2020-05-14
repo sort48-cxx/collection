@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>JS 训练</title>
+</head>
+<style>
+	* {
+		padding: 0;
+		margin: 0
+	}
+
+	p {
+		line-height: 180%
+	}
+
+	div {
+		margin: 30px;
+	}
+
+	span {
+		display: block;
+		margin: 10px 0;
+		line-height: 160%;
+	}
+</style>
+
+<body>
+	<div>
+		<p>2019-04-16.typeof运算符和instanceof运算符以及isPrototypeOf()方法的区别</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）typeof是一个运算符，用于检测非引用数据的类型，包括(null,number,string,boolean,undefined)，检测引用数据的类型，返回object或者function；</span>
+			<span>2）instanceof是一个运算符，它是用来检测引用数据的类型，包括（function，object，Date），第一个变量是一个对象，，如果用instanceof检测非引用数据类型时，都返回false；</span>
+			<span>3）isPrototypeof（），它只是检测对象中是否存在某个属性或者对象。</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>typeof是一个运算符，用于检测数据的类型，比如基本数据类型null、undefined、string、number、boolean，以及引用数据类型object、function，但是对于正则表达式、日期、数组这些引用数据类型，它会全部识别为object；</span>
+			<span>instanceof同样也是一个运算符，它就能很好识别数据具体是哪一种引用类型。</span>
+			<span>它与isPrototypeOf的区别就是它是用来检测构造函数的原型是否存在于指定对象的原型链当中；而isPrototypeOf是用来检测调用此方法的对象是否存在于指定对象的原型链中，所以本质上就是检测目标不同。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-04-17.call()和apply()的区别</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）call()，允许某一个对象调用其他对象的方法，参数可以为多个</span>
+			<span>2）apply()，同样也是允许某一个对象调用其他对象的方法，参数最多为2个</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>实际上，apply和call的功能是一样的，只是传入的参数列表形式不同。apply：最多只能有两个参数——新this对象和一个数组argArray。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-04-18.全局函数eval()有什么作用？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）eval()是执行字符串的js代码</span>
+			<span>2）避免在不必要的情况下使用eval，容易被注入恶意代码</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>eval()只有一个参数，如果传入的参数不是字符串，它直接返回这个参数。如果参数是字符串，它会把字符串当成javascript代码进行编译。如果编译失败则抛出一个语法错误(syntaxError)异常。如果编译成功，则开始执行这段代码，并返回字符串中的最后一个表达式或语句的值，如果最后一个表达式或语句没有值，则最终返回undefined。如果字符串抛出一个异常，这个异常将把该调用传递给eval()。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-04-22.描述以下变量的区别：null，undefined或undeclared</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）null是访问不存在对象返回的值</span>
+			<span>2）underfined是程序中定义的变量没有初始值返回的值。</span>
+			<span>3）undeclared是范围未定义的值或变量返回的值</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>null 表示"没有对象"，即该处不应该有值，转为数值时为0。典型用法是：</span>
+			<span>（1）作为函数的参数，表示该函数的参数不是对象。</span>
+			<span>（2）作为对象原型链的终点。</span>
+			<span> undefined 表示"缺少值"，就是此处应该有一个值，但是还没有定义，转为数值时为NaN。典型用法是：</span>
+			<span>（1）变量被声明了，但没有赋值时，就等于undefined。</span>
+			<span>（2）调用函数时，应该提供的参数没有提供，该参数等于undefined。</span>
+			<span>（3）对象没有赋值的属性，该属性的值为undefined。</span>
+			<span>（4）函数没有返回值时，默认返回undefined。</span>
+			<span> undeclared :js语法错误，没有申明直接使用，js无法找到对应的上下文。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-04-23.==和===有什么区别？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）==只是值比较，不包含类型比较</span>
+			<span>2）===不单值比较，而且只有类型和值相同，才返回true</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>‘===’</span>
+			<span>如果两个都是数值，并且是同一个值，那么[相等]；(！例外)的是，如果其中至少一个是NaN，那么[不相等]。（判断一个值是否是NaN，只能用isNaN()来判断） </span>
+			<span>如果两个都是字符串，每个位置的字符都一样，那么[相等]；否则[不相等]。</span>
+			<span>如果两个值都是true，或者都是false，那么[相等]。 </span>
+			<span>如果两个值都引用同一个对象或函数，那么[相等]；否则[不相等]。 </span>
+			<span>如果两个值都是null，或者都是undefined，那么[相等]。 </span>
+			<span>‘==’</span>
+			<span>如果两个值类型相同，进行 === 比较。</span>
+			<span>如果两个值类型不同，他们可能相等。根据下面规则进行类型转换再比较：</span>
+			<span>如果一个是null、一个是undefined，那么[相等]。 </span>
+			<span>如果一个是字符串，一个是数值，把字符串转换成数值再进行比较。 </span>
+			<span>如果任一值是 true，把它转换成 1 再比较；如果任一值是 false，把它转换成 0 再比较。 </span>
+			<span>如果一个是对象，另一个是数值或字符串，把对象转换成基础类型的值再比较。对象转换成基础类型，利用它的toString或者valueOf方法。js核心内置类，会尝试valueOf先于toString；例外的是Date，Date利用的是toString转换。任何其他组合，都[不相等]。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-04-25.同步异步?</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）同步：每次只能发出一次请求，等待返回</span>
+			<span>2）异步：可以发出多个请求，并及时返回结果</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>1、进程同步：就是在发出一个功能调用时，在没有得到结果之前，该调用就不返回。也就是必须一件一件事做,等前一件做完了才能做下一件事</span>
+			<span>2、异步的概念和同步相对。当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-04-28.什么是事件代理/事件委托？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）利用js冒泡事件，给目标元素的父元素绑定事件，从而事件给目标元素添加事件，从而提高效率</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>事件代理/事件委托是利用事件冒泡的特性，将本应该绑定在多个元素上的事件绑定在他们的祖先元素上，尤其在动态添加子元素的时候，可以非常方便的提高程序性能，减小内存空间。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-04-29.什么是事件冒泡？什么是事件捕获？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）事件冒泡：一般指触发子类的事件，父类同时也会触发；</span>
+			<span>2）事件捕获：一般指从最不特定的目标事件开始触发，到最特定的目标元素</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>冒泡型事件：事件按照从最特定的事件目标到最不特定的事件目标(document对象)的顺序触发。</span>
+			<span>捕获型事件：事件从最不精确的对象(document 对象)开始触发，然后到最精确(也可以在窗口级别捕获事件，不过必须由开发人员特别指定)。</span>
+			<span>
+				支持W3C标准的浏览器在添加事件时用addEventListener(event,fn,useCapture)方法，基中第3个参数useCapture是一个Boolean值，用来设置事件是在事件捕获时执行，还是事件冒泡时执行。而不兼容W3C的浏览器(IE)用attachEvent()方法，此方法没有相关设置，不过IE的事件模型默认是在事件冒泡时执行的，也就是在useCapture等于false的时候执行，所以把在处理事件时把useCapture设置为false是比较安全，也实现兼容浏览器的效果。
+			</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-05.如何阻止冒泡？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）event.stoppropagation</span>
+			<span>2）return false</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true。</span>
+			<span>window.event? window.event.cancelBubble = true : e.stopPropagation();</span>
+			<span>return false也可以阻止冒泡。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-06.如何阻止默认事件？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）e.preventDefault</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>w3c的方法是e.preventDefault()，IE则是使用e.returnValue = false，</span>
+			<span>function stopDefault( e ) {
+				//阻止默认浏览器动作(W3C)
+				if ( e && e.preventDefault )
+				e.preventDefault();
+				//IE中阻止函数器默认动作的方式
+				else
+				window.event.returnValue = false;
+				}</span>
+			<span>return false</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-07.简述javascript中this的指向？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）默认this是指向最外层父类window</span>
+			<span>2）在一个作用域，this指向的是当前目标元素</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>第一准则是：this永远指向函数运行时所在的对象，而不是函数被创建时所在的对象。</span>
+			<span>普通的函数调用，函数被谁调用，this就是谁。</span>
+			<span>构造函数的话，如果不用new操作符而直接调用，那即this指向window。用new操作符生成对象实例后，this就指向了新生成的对象。</span>
+			<span>匿名函数或不处于任何对象中的函数指向window 。</span>
+			<span>如果是call，apply等，指定的this是谁，就是谁。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-08.原生对象和宿主对象</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）原生对象是自带的对象</span>
+			<span>2）宿主对象，即宿主环境所定义的对象</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>原生对象是ECMAScript规定的对象，所有内置对象都是原生对象，比如Array、Date、RegExp等；</span>
+			<span>宿主对象是宿主环境比如浏览器规定的对象，用于完善是ECMAScript的执行环境，比如Document、Location、Navigator等。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-09.基本数据类型和引用数据类型</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）基本数据类型：Number,String,Boolean,Null,Undefined</span>
+			<span>2）引用数据类型:Function,Object,Date,Array,Regexp</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>基本数据类型指的是简单的数据段，有5种，包括null、undefined、string、boolean、number；</span>
+			<span>引用数据类型指的是有多个值构成的对象，包括object、array、date、regexp、function等。</span>
+			<span>
+				主要区别：
+				声明变量时不同的内存分配：前者由于占据的空间大小固定且较小，会被存储在栈当中，也就是变量访问的位置；后者则存储在堆当中，变量访问的其实是一个指针，它指向存储对象的内存地址。
+				也正是因为内存分配不同，在复制变量时也不一样。前者复制后2个变量是独立的，因为是把值拷贝了一份；后者则是复制了一个指针，2个变量指向的值是该指针所指向的内容，一旦一方修改，另一方也会受到影响。
+				参数传递不同：虽然函数的参数都是按值传递的，但是引用值传递的值是一个内存地址，实参和形参指向的是同一个对象，所以函数内部对这个参数的修改会体现在外部。原始值只是把变量里的值传递给参数，之后参数和这个变量互不影响。
+			</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-10.深拷贝和浅拷贝</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）浅拷贝：浅拷贝的时候如果数据是基本数据类型，那么就如同直接赋值那种，会拷贝其本身，如果除了基本数据类型之外还有一层对象，那么对于浅拷贝而言就只能拷贝其引用，对象的改变会反应到拷贝对象上；</span>
+			<span>2）深拷贝：深拷贝就会拷贝多层，即使是嵌套了对象，也会都拷贝出来。</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>浅拷贝是拷贝一层，深层次的对象级别的就拷贝引用</span>
+			<span>深拷贝是拷贝多层，每一级别的数据都会拷贝出来；</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-13.解释一下原型继承的原理</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）对象A继承对象B，A同时继承了B的原型链上的方法和自定义方法</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>所有的实例对象共享同一个prototype对象;prototype对象就好像是实例对象的原型，而实例对象则好像"继承"了prototype对象一样</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-14.请尽可能详尽的解释AJAX的工作原理</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>1）</span>
+			<span>2）</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>ajax简单来说是通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用javascript来操作DOM而更新页面。</span>
+			<span>- ajax的优点: -</span>
+			<span>1)最大的一点是页面无刷新，在页面内与服务器通信，给用户的体验非常好</span>
+			<span>2)使用异步方式与服务器通信，不需要打断用户的操作，具有更加迅速的响应能力。</span>
+			<span>3)可以把以前一些服务器负担的工作转嫁到客户端，利用客户端闲置的能力来处理，减轻服务器和带宽的负担，节约空间和宽带租用成本，ajax的原则是“按需取数据”，可以最大程度的减少冗余请求。</span>
+			<span>4)基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。</span>
+			<span>- ajax的缺点: -</span>
+			<span>1)ajax对浏览器后退机制造成了破坏，也就是说用户无法通过浏览器的后退按钮回到前一次操作的页面。</span>
+			<span>2)安全问题,暴露比以前更多的数据和服务器逻辑</span>
+			<span>3)对搜索引擎的支持比较弱</span>
+			<span>4)破坏了程序的异常机制</span>
+			<span>4)违背了url和资源定位的初衷</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-15.get和post有什么区别？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>都是前台和服务器进行交互的方法</span>
+			<span>1)get:从服务器中获取数据</span>
+			<span>2)post:提交数据到服务器</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>GET和POST本质上两者没有任何区别。他们都是HTTP协议中的请求方法。底层实现都是基于TCP/IP协议。</span>
+			<span>get是通过明文发送数据请求，而post是通过密文；</span>
+			<span>get传输的数据量有限，因为url的长度有限，post则不受限；</span>
+			<span>GET请求的参数只能是ASCII码，所以中文需要URL编码，而POST请求传参没有这个限制</span>
+			<span>GET产生一个TCP数据包；POST产生两个TCP数据包。对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；
+				而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-16.请解释变量声明提升</p>
+		<p>
+			<span>-> 自解：</span>
+		</p>
+		<p>
+			<span>-> 正解：通过var声明的变量会被提升至作用域的顶端。不仅仅是变量，函数声明也一样会被提升。当同一作用域内同时出现变量和函数声明提升时，变量仍然在函数前面。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-17.请指出document.onload和document.ready两个事件的区别</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>document.onload:是页面全部渲染完成就执行这个方法</span>
+			<span>document.ready:是打开页面就执行这个方法，不需要全部渲染</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>页面加载完成有两种事件，一是ready，表示文档结构已经加载完成（不包含图片等非文字媒体文件）</span>
+			<span>二是onload，指示页面包含图片等文件在内的所有元素都加载完成。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-22.JavaScript里arguments究竟是什么？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>arguments:就是指代参数</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>Javascrip中每个函数都会有一个Arguments对象实例arguments，它引用着函数的实参，可以用数组下标的方式"[]"引用arguments的元素。arguments.length为函数实参个数，arguments.callee引用函数自身。</span>
+			<span>在函数代码中，使用特殊对象arguments，开发者无需明确指出参数名，通过使用下标就可以访问相应的参数。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-23.什么是"use strict";?使用它的好处和坏处分别是什么？</p>
+		<p>
+			<span>-> 自解：</span>
+			<span>use strtic 是严格模式</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>在代码中出现表达式-"use strict"; 意味着代码按照严格模式解析，这种模式使得Javascript在更严格的条件下运行。</span>
+			<span>好处：</span>
+			<span>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</span>
+			<span>消除代码运行的一些不安全之处，保证代码运行的安全；</span>
+			<span>提高编译器效率，增加运行速度；</span>
+			<span>为未来新版本的Javascript做好铺垫。</span>
+			<span>坏处：</span>
+			<span>同样的代码，在"严格模式"中，可能会有不一样的运行结果；</span>
+			<span>一些在"正常模式"下可以运行的语句，在"严格模式"下将不能运行。</span>
+			<span>1)变量在赋值之前必须声明,防止意外的全局变量</span>
+			<span>2)取消this值的强制转换</span>
+			<span>3)不允许重复的属性名称或参数值</span>
+			<span>4)使 eval() 更安全</span>
+			<span>5)在 delete 使用无效时抛出错误</span>
+			<span>6)严格模式去除了with语句</span>
+			<span>7)不能修改arguments ，不能在函数内定义arguments变量 ，不能使用arugment.caller和argument.callee</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-24.请解释一下JavaScript的同源策略</p>
+		<p>
+			<span>-> 自解：</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>同源策略，即拥有相同的协议（protocol），端口（如果指定），主机（域名）的两个页面是属于同一个源。</span>
+			<span>然而在IE中比较特殊，IE中没有将端口号加入同源的条件中，因此上图中端口不同那一项，在IE中是算同源的。</span>
+			<span>script、img、iframe中的src，href都可以任意链接网络资源，是不遵循通源策略的。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-27.请解释JSONP的工作原理，以及它为什么不是真正的AJAX。</p>
+		<p>
+			<span>-> 自解：</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>JSONP (JSON with Padding)是一个简单高效的跨域方式，HTML中的script标签可以加载并执行其他域的javascript，于是我们可以通过script标记来动态加载其他域的资源。例如我要从域A的页面pageA加载域B的数据，那么在域B的页面pageB中我以JavaScript的形式声明pageA需要的数据，然后在 pageA中用script标签把pageB加载进来，那么pageB中的脚本就会得以执行。</span>
+			<span>JSONP在此基础上加入了回调函数，pageB加载完之后会执行pageA中定义的函数，所需要的数据会以参数的形式传递给该函数。JSONP易于实现，但是也会存在一些安全隐患，如果第三方的脚本随意地执行，那么它就可以篡改页面内容，截获敏感数据。但是在受信任的双方传递数据，JSONP是非常合适的选择。</span>
+			<span>AJAX是不跨域的，而JSONP是一个是跨域的，还有就是二者接收参数形式不一样！</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-28.通过new创建一个对象的时候，构造函数内部有哪些改变？</p>
+		<p>
+			<span>-> 自解：</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。</span>
+			<span>属性和方法被加入到 this 引用的对象中。</span>
+			<span>新创建的对象由 this 所引用，并且最后隐式的返回 this 。</span>
+		</p>
+	</div>
+	<div>
+		<p>2019-05-29.什么是跨域？有什么方法解决跨域带来的问题？</p>
+		<p>
+			<span>-> 自解：</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+			<span>跨域需要针对浏览器的同源策略来理解，同源策略指的是请求必须是同一个端口，同一个协议，同一个域名，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源。</span>
+			<span>受浏览器同源策略的影响，不是同源的脚本不能操作其他源下面的对象。想要操作另一个源下的对象是就需要跨域。</span>
+			<span>解决方法:</span>
+			<span></span>
+		</p>
+	</div>
+	<div>
+		<p>2019-00-00.</p>
+		<p>
+			<span>-> 自解：</span>
+		</p>
+		<p>
+			<span>-> 正解：</span>
+		</p>
+	</div>
+
+</body>
+
+</html>

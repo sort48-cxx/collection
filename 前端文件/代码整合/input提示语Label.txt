@@ -1,0 +1,32 @@
+/*
+Author :Cxx
+Time   :0921/16
+*/
+
+/*input-placeholderHTML代码*/
+
+<div class="a2-input-row">
+	<label for="login_paw" class="a2-input-tips">请输入6-16位密码</label>
+	<input type="password" id="login_paw" name="paw" class="a2-input" data-index="2" />
+</div>
+
+
+/*input-placeholderJS代码*/
+
+$(".a2-input").delegate(null, "focusin focusout", function(e) {
+	if (e.type === "focusin") {
+		$(this).css("border-color","#2bb1ff");
+		$(this).prev().hide();
+	} else {
+		if ($(this).val() === "") {
+			$(this).css("border-color","#e5e5e5");
+			$(this).prev().show();
+		}
+	}
+});
+
+/*input-placeholderCSS代码*/
+
+.a2-input-row{position: relative;}
+.a2-input-row label{position: absolute;top: 10px;left: 20px;color: #aaa;}
+.a2-input-row .a2-input{width: 260px;height: 38px;line-height: 38px;border: 1px solid #e5e5e5;border-radius: 6px;text-indent: 20px;font-size: 16px;color:#333}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<title>css3-Try</title>
+<head>
+	<script src="../js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+</head>
+
+<style>
+.css3-item1-box{height: 500px;width: 500px;overflow: hidden;background-color: #fff;margin: 0 auto;position: relative;}
+.css3-item1-box .css3-square1 {width:50px;height:50px;overflow: hidden;background-color: #50a3ed;margin-left: 100px;position: absolute;animation: down1 3s .5s infinite ease-in-out backwards;-webkit-animation:down1 3s .5s infinite ease-in-out backwards;-moz-animation:down1 3s .5s infinite ease-in-out backwards;}
+
+.css3-item1-box .css3-square2 {width:50px;height: 50px;overflow: hidden;background-color: #ff8249;margin-left: 250px;position: absolute;animation: animation: down2 4s infinite linear backwards;-webkit-animation: down2 4s infinite linear backwards;-moz-animation:down2 4s infinite linear backwards;}
+
+.css3-item1-box .css3-square3 {width:50px;height: 50px;overflow: hidden;background-color: #f24b43;margin-left: 400px;position: absolute;animation: animation: down3 6s infinite linear backwards;-webkit-animation: down3 6s infinite linear backwards;-moz-animation:down3 6s infinite linear backwards;}
+
+@keyframes down1{0%{top:0;-webkit-transform-origin:center center;-webkit-transform:rotate(-200deg);}100%{-webkit-transform-origin:center center;-webkit-transform:rotate(0);top:501px}}
+
+@-webkit-keyframes down1 {0%{top:0;-moz-transform-origin:center center;-moz-transform:rotate(-200deg);}100%{-moz-transform-origin:center center;-moz-transform:rotate(0);top:501px}}
+
+@keyframes down2{0%{top:0;-webkit-transform-origin:center center;-webkit-transform:rotate(-200deg);}100%{-webkit-transform-origin:center center;-webkit-transform:rotate(0);top:501px}}
+
+@-webkit-keyframes down2 {0%{top:0;-moz-transform-origin:center center;-moz-transform:rotate(-200deg);}100%{-moz-transform-origin:center center;-moz-transform:rotate(0);top:501px}}
+
+@keyframes down3{0%{top:0;-webkit-transform-origin:center center;-webkit-transform:rotate(-200deg);}100%{-webkit-transform-origin:center center;-webkit-transform:rotate(0);top:501px}}
+
+@-webkit-keyframes down3 {0%{top:0;-moz-transform-origin:center center;-moz-transform:rotate(-200deg);}100%{-moz-transform-origin:center center;-moz-transform:rotate(0);top:501px}}
+
+.css3-item2-box{width: 100%;height: 70px;overflow: hidden;background-color: #fff;margin-top: 20px;position: relative;}
+.css3-item2-box .css3-circle1{background-color: #fa7a3d;border-radius: 50%;width: 50px;height: 50px;overflow: hidden;margin: 10px 0;animation: moveicon 3s;-webkit-animation: moveicon 3s; -webkit-animation-fill-mode:forwards;-moz-animation-fill-mode:forwards; -ms-animation-fill-mode:forwards;position:absolute;left: 0}
+
+@keyframes moveicon {form{ transform:rotate(0deg);-ms-transform:rotate(0deg);-moz-transform:rotate(0deg);-webkit-transform:rotate(0deg);-o-transform:rotate(0deg);left:0;}
+	to{transform:rotate(360deg);-ms-transform:rotate(360deg);-moz-transform:rotate(360deg);-webkit-transform:rotate(360deg);-o-transform:rotate(360deg);left:1114px;}}
+
+@-webkit-keyframes moveicon {form{ transform:rotate(0deg);-ms-transform:rotate(0deg);-moz-transform:rotate(0deg);-webkit-transform:rotate(0deg);-o-transform:rotate(0deg);left:0;}
+	to{transform:rotate(360deg);-ms-transform:rotate(360deg);-moz-transform:rotate(360deg);-webkit-transform:rotate(360deg);-o-transform:rotate(360deg);left:1114px;}}
+
+@-moz-keyframes moveicon {form{ transform:rotate(0deg);-ms-transform:rotate(0deg);-moz-transform:rotate(0deg);-webkit-transform:rotate(0deg);-o-transform:rotate(0deg);left:0;}
+	to{transform:rotate(360deg);-ms-transform:rotate(360deg);-moz-transform:rotate(360deg);-webkit-transform:rotate(360deg);-o-transform:rotate(360deg);left:1114px;}}
+</style>
+
+<body>
+	<div class="css3-item1-box clearfix">
+		<div class="left css3-square1"></div>
+		<div class="left css3-square2"></div>
+		<div class="left css3-square3"></div>
+	</div>
+
+	<div class="css3-item2-box ">
+		<div class="left css3-circle1"></div>
+	</div>
+</body>
+
+</html>

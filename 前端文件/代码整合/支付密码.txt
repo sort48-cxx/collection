@@ -1,0 +1,66 @@
+//获取焦点(不带input-icon)
+$("input").delegate(null, "focusin focusout", function(e) {
+	if (e.type === "focusin") {
+		$(this).css({'border-color': '#ffb923'});
+	} else { 
+		$(this).css({'border-color': '#e0e0e0'}); 
+	}
+})
+
+//支付密码检测
+function check_paypaw(obj) {
+	obj.keyup(function(e) {
+		closewarnshow($(".dialog-paw-text"));
+		var inpu_index = $(this).index();
+		obj.each(function() {
+			$(this).removeClass("onactive");
+		});
+		if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+			if ($(this).val() != "") {
+				obj.eq(inpu_index + 1).focus().addClass("onactive");
+			}
+		} else if (e.keyCode === 8) {
+			if(inpu_index-1>=0){
+				obj.eq(inpu_index - 1).focus().addClass("onactive");
+			}
+			obj.eq(inpu_index).val("");
+		} else {
+			$(this).val("");
+		}
+	});
+}
+//获取支付密码
+function get_paypaw(obj) {
+	var payval_array = new Array();
+	obj.each(function() {
+		if ($(this).val() != "") { payval_array.push($(this).val()); } });
+	var get_string = payval_array.join("");
+	return get_string;
+}
+//调用-检测
+check_paypaw($(".reg-pas-box>input"));
+
+//调用-获取支付密码
+var payPassword=get_paypaw($(".reg-pas-box>input"));
+
+
+//页面布局
+<div class=" left reg-pas-box">
+	<input type="password" maxlength="1" />
+	<input type="password" maxlength="1" />
+	<input type="password" maxlength="1" />
+	<input type="password" maxlength="1" />
+	<input type="password" maxlength="1" />
+	<input type="password" maxlength="1" />
+	<input type="hidden" class="keep_pay_pas"> //缺少这句，页面需加判断！
+</div>
+
+//页面样式
+.reg-confpas-box input:first-child {margin-left: 0;}
+.reg-confpas-box input {border: 1px solid #e0e0e0;width: 38px;height: 38px;overflow: hidden;margin-left: 7px;text-align: center;line-height: 38px;font-size: 20px;border-radius: 5px;}
+
+
+
+
+
+

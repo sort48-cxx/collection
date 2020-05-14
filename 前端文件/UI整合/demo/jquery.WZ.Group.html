@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<title>UI-整合-微镇</title>
+
+<head>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.Listcomponent.js"></script>
+	<script src="../js/jquery.UI.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.Listcomponent.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.UI.css">
+</head>
+
+<body>
+	<div class="layout-box">
+		<div style="margin-bottom:10px;">
+			<h1 style="margin-bottom:10px">1.下拉选择器 </h1>
+			<select class="jquery-select">
+				<option>中国银行</option>
+				<option>中国建设银行</option>
+				<option>中国工商银行</option>
+				<option>中国农业银行</option>
+				<option>交通银行</option>
+			</select>
+		</div>
+		 <div style="margin-bottom:10px;">
+			<h1 style="margin-bottom:10px">2.单选 </h1>
+			<div><input type="checkbox" name="register-xieyi" value="1" id="UI-cir-radio" /></div>
+			<div><input type="checkbox" name="register-xieyi" value="1" id="UI-squ-radio" checked/></div>
+		</div>
+	</div>
+</body>
+
+<script>
+	$(function() {
+		//下拉选择器
+		$(".jquery-select").WZDropdown({});
+		//单选
+		$("#UI-cir-radio").WZCheckbox({
+		'kindClass': 'UI-radio-cir', //必填
+		"parameter": '14px', //必填
+		'addText': '我已阅读并同意微镇平台', //选填
+
+	});
+	$("#UI-squ-radio").WZCheckbox({
+		'kindClass': 'UI-radio-squ', //必填
+		"parameter": '16px', //必填
+		'addText': '我已阅读并同意微镇平台', //选填
+		"iconClass": 'ui-radio-icon on', //选中
+	});
+	});
+</script>
+
+</html>

@@ -1,0 +1,34 @@
+
+1.判断js对象的类型 ：Object.prototype.toString.call(data);
+
+2.发现Chrome浏览器下textContent和innerText还是有区别的，innerText中的某些HTML节点会被当做换行符空格，
+textContent则会过滤。（Chrome专有，应该是个bug）
+
+var text = dom.textContent || dom.innerText; ​​​​
+
+3.去重
+
+var arr=[[11,22,22],[13,14,15,15],12];
+var newArr=Array.from(new Set(arr.flat(Infinity))).sort((a,b)=> a-b);
+
+4.__proto__和prototype的理解
+
+只有函数对象才有prototype属性；prototype对象上存放共用的方法和属性
+对象都有__proto__属性，__proto__是指向该对象构造函数的原型属性（即prototype）
+function Parent(name){
+  this.name = name
+}
+Parent.prototype = {
+  contructor:Parent,
+  speak:function(){
+    console.log(`我是${this.name}`)
+  }
+}
+var children = new Parent('xiaoming')
+children.name  // xiaoming
+children.speak() // 我是xiaoming
+children.__proto__ ===Parent.prototype  // true       
+Parent.prototype.__proto__ === Object.prototype  // true  
+children.toString()  // "[object Object]"
+上面可以看出通过__proto__属性我们可以拿到Object原型对象上的属性和方法，原型对象上的__proto__又指向该构造函数的prototype，从而形成了一条原型链。上面children能够使用toString方法的原因。
+

@@ -1,0 +1,33 @@
+/*输入框/输入域*/
+.ui-input {display: inline-block;*display:inline;*zoom:1;width: 145px; padding-left: 5px; font-size: 16px; text-align: left; height: 38px; line-height: 38px; border: 1px solid #d3d2d2; vertical-align: middle; border-radius: 2px; transition: border-color 0.5s, outline-color 0.5s; outline: transparent solid 1px;}
+textarea.ui-input { padding-top: 5px; height: 50px; line-height:150%; resize: vertical;}
+.ui-input:focus { border-color: #33b9c5; /*outline-color: #33b9c5;*/}
+/*单选-圆-控件*/
+.UI-radio-cir {cursor: pointer;}
+.UI-radio-cir span {vertical-align: middle}
+.UI-radio-cir .spacing-L5 {padding-left: 5px;}
+.UI-radio-cir .ui-radio-icon {cursor: pointer;display: inline-block;position: relative; background: url('../img/form.UI.png') no-repeat center;background-position:-7px -27px;width: 14px;height: 14px;margin-top: 2px;margin-left: -14px;}
+:root .UI-radio-cir .ui-radio-icon {filter: none}
+.UI-radio-cir .on {background-position:-30px -27px;}
+/*单选-方-控件*/
+.UI-radio-squ {cursor: pointer;}
+.UI-radio-squ span {vertical-align: middle}
+.UI-radio-squ .spacing-L5 {padding-left: 5px;}
+.UI-radio-squ .ui-radio-icon {cursor: pointer;display: inline-block;position: relative; background: url('../img/form.UI.png') no-repeat center;background-position:-6px -3px;width: 16px;height: 16px;margin-top: 2px;margin-left: -16px;}
+:root .UI-radio-squ .ui-radio-icon {filter: none}
+.UI-radio-squ .on {background-position:-29px -3px;}
+/*单选-圆-css*/
+.ui-radio-cir {cursor: pointer;}
+.ui-radio-cir input {vertical-align: middle;opacity: 0;width: 16px;height: 16px;margin-right: -16px}
+.ui-radio-cir span {vertical-align: middle}
+.ui-radio-cir input + span {filter: alpha(opacity=0);cursor: pointer;display: inline-block;position: relative; background: url('../img/form.UI.png') no-repeat center;background-position:-7px -27px;width: 14px;height: 14px;margin-top: 2px}
+:root .ui-radio-cir input + span {filter: none}
+.ui-radio-cir input:checked + span {background-position:-30px -27px;}
+/*单选-方-css*/
+.ui-radio-squ {cursor: pointer;}
+.ui-radio-squ input {vertical-align: middle;opacity: 0;width: 16px;height: 16px;margin-right: -16px}
+.ui-radio-squ span {vertical-align: middle}
+.ui-radio-squ input + span {filter: alpha(opacity=0);cursor: pointer;display: inline-block;position: relative; background: url('../img/form.UI.png') no-repeat center;background-position:-6px -3px;width: 16px;height: 16px;margin-top: 2px}
+:root .ui-radio-squ input + span {filter: none}
+.ui-radio-squ input:checked + span {background-position:-29px -3px;}
+

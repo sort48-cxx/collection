@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	.on {
+		background-color: burlywood;
+	}
+</style>
+
+<body></body>
+
+<script>
+	window.onload = function () {
+		function creatTable(arg) {
+			var _this = this; //全局this
+			init = function () { //初始化
+				this.create();//创建表格 （隔行变色）
+				this.double();//双击
+				this.style();//当前行，当前列 高亮
+			};
+			this.init(); //初始化
+			create = function () { //创建表格 （隔行变色）
+				var cTr = "";
+				var cTd = "";
+				var cTable = "";
+				for (var i = 0; i < arg.length; i++) {
+					for (var j = 0; j < arg[i].length; j++) {
+						cTd += "<td width='50' height='50' align='center' trindex=" + i + " tdindex=" + j + ">" + arg[i][j] + "</td>"
+					}
+					if (i % 2 == 0) {
+						cTr += "<tr class='on'>" + cTd + "</tr>";
+					} else {
+						cTr += "<tr>" + cTd + "</tr>";
+					}
+					cTd = "";
+				}
+				cTable = "<table border='1'>" + cTr + "</table>";
+				document.body.innerHTML = cTable;
+			};
+			this.double = function () {//双击
+				var aTd = document.querySelectorAll("td");
+				for (var i = 0; i < aTd.length; i++) {
+					aTd[i].index = i;
+					aTd[i].addEventListener("dblclick", function (e) {
+						var tdThis = this;
+						var tdIndex = this.getAttribute("tdindex");
+						var trIndex = this.getAttribute("trindex");
+						var btn = document.createElement("input");
+						this.appendChild(btn);
+						btn.addEventListener("blur", function () {
+							_this.edit(trIndex, tdIndex, this.value);//修改值
+							tdThis.innerText = this.value;
+							btn.remove();
+						})
+					});
+
+				}
+			};
+			this.style = function () { //当前行，当前列 高亮
+				var trIndex = "";
+				var tdIndex = "";
+				var aTd = document.querySelectorAll("td");
+				var atable = document.querySelector("table");
+				for (var i = 0; i < aTd.length; i++) {
+					aTd[i].index = i;
+					aTd[i].addEventListener("mouseenter", function (e) {
+						trIndex = this.getAttribute("trindex");
+						tdIndex = this.getAttribute("tdindex");
+						atable.rows[trIndex].style.background = "gold";
+						for (var j = 0; j < atable.rows.length; j++) {
+							atable.rows[j].cells[tdIndex].style.background = "gold";
+						}
+					});
+					aTd[i].addEventListener("mouseleave", function (e) {
+						atable.rows[trIndex].removeAttribute("style")
+						for (var j = 0; j < atable.rows.length; j++) {
+							atable.rows[j].cells[tdIndex].removeAttribute("style")
+						}
+					})
+				}
+			};
+			this.edit = function (trindex, tdindex, val) {//修改值
+				arg[trindex][tdindex] = val;
+				console.log(arg);
+			}
+		};
+
+		var arr = [[0, 1, 6, 7], [2, 3, 8, 9], [4, 5, 10, 11], [2, 3, 12, 13], [4, 5, 14, 15]]
+		creatTable(arr)
+	}
+
+</script>
+
+
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="format-detection" content="email=no" />
+	<script src="../js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common_wap.css">
+	<title>wap_日历</title>
+	<style>
+	.calendar {
+		width: 100%;
+		/*height: 260px;*/
+		margin: 0 auto 20px;
+		color: #333;
+		overflow: hidden;
+	}
+
+	.calendar table {
+		float: left;
+		width: 100%;
+		table-layout: fixed;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-align: center;
+	}
+
+	.calendar td,
+	.calendar th {
+		height: 34px;
+		line-height: 30px;
+		text-align: center;
+	}
+
+	.calendar td span {
+		display: block;
+		width: 30px;
+		margin: 0 auto;
+		cursor: pointer;
+		height: 30px;
+		font-size: 14px;
+	}
+
+	.calendar .calendar-title {
+		line-height: 30px;
+		text-align: center;
+		border-bottom: 1px solid #ebebeb;
+		margin-bottom: 5px;
+	}
+
+	.calendar .calendar-title span {
+		margin: 0 10px;
+	}
+
+	.calendar .calendar-title a {
+		color: #666;
+		margin: 0 5px;
+		text-decoration: none;
+	}
+
+	.calendar .widget-today span {
+		font-weight: bold;
+	}
+
+	.calendar .td-disabled span {
+		color: #999;
+	}
+
+	.calendar .widget-highlight span {
+		/*background: #f7b82e;*/
+		display: block;
+		color: #333;
+		border-radius: 30px;
+	}
+
+	.calendar .widget-highlight span:after {
+		content: "";
+		display: block;
+		width: 4px;
+		height: 4px;
+		overflow: hidden;
+		border-radius: 50%;
+		background-color: #f7b82c;
+		margin: 0 auto;
+	}
+
+	.calendar .widget-active span {
+		background: #39c;
+		color: #fff;
+		border-radius: 30px;
+	}
+
+	.calendar .panel {
+		width: 100%;
+	}
+	/*当天*/
+
+	.calendar .workday span {
+		color: #333;
+	}
+	/*当天有还款*/
+
+	.calendar .todaypayment span {
+		background-color: #f24b43;
+		color: #fff!important;
+		border-radius: 50%;
+	}
+
+	.calendar .nowpayment span:after {
+		content: "";
+		display: block;
+		width: 4px;
+		height: 4px;
+		overflow: hidden;
+		border-radius: 50%;
+		background-color: #f24b43;
+		margin: -4px auto 0 auto;
+	}
+	/*当天*/
+
+	.calendar .today span {
+		color: #f24b43;
+	}
+	/*周末*/
+
+	.calendar .otherday span {
+		color: #aaa;
+	}
+	/*有还款*/
+
+	.calendar .payment span:after {
+		content: "";
+		display: block;
+		width: 4px;
+		height: 4px;
+		overflow: hidden;
+		border-radius: 50%;
+		background-color: #f7b82c;
+		margin: -4px auto 0 auto;
+	}
+	/*未还款*/
+
+	.calendar .willpayment span {
+		background-color: #ffb923;
+		border-radius: 50%;
+		color: #fff;
+	}
+	/*已还款 当天无还款*/
+
+	.calendar .withoutpayment span {
+		background-color: #aaa;
+		color: #fff !important;
+		border-radius: 50%;
+	}
+	/*已还款*/
+
+	.calendar .beenpayment span:after {
+		content: "";
+		display: block;
+		width: 4px;
+		height: 4px;
+		overflow: hidden;
+		border-radius: 50%;
+		background-color: #aaa;
+		margin: -4px auto 0 auto;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function() {
+		var now_time = new Date();
+		var nowObj = {
+			nowYear: now_time.getFullYear(),
+			nowMonth: now_time.getMonth(),
+			nowDay: now_time.getDate(),
+			nowWeed: now_time.getDay(),
+		}
+		var sava_today = nowObj.nowYear + "" + ((nowObj.nowMonth + 1) < 10 ? 0 + "" + (nowObj.nowMonth + 1) : (nowObj.nowMonth + 1)) + "" + ((nowObj.nowDay) < 10 ? 0 + "" + nowObj.nowDay : nowObj.nowDay) + "";
+		var sava_year = nowObj.nowYear;
+		var sava_month = nowObj.nowMonth + 1;
+		$(".record-year").text(sava_year);
+		$(".record-month").text(sava_month);
+		init(nowObj.nowYear, nowObj.nowMonth); //默认加载当月数据
+		function init(year, month) {
+			var showDay_arr = [];
+			var item_arr = [];
+			var lastMonth_num = countMonthNunber(year, month - 1, 0).getDate(); //前一个月的天数
+			var nowWeek_num = countMonthNunber(year, month, 1).getDay(); //当月第一天星期几
+			var nowMonth_num = countMonthNunber(year, month + 1, 0).getDate(); //当月的天数
+			//遍历天数
+			for (var i = (lastMonth_num - nowWeek_num) + 1; i <= lastMonth_num; i++) {
+				var obj = {
+					year: sava_year,
+					month: sava_month - 1 < 10 ? 0 + "" + (sava_month-1):(sava_month-1)+"",
+					day: i < 10 ? 0 + "" + i:i+"",
+					state: 'otherday', //上一个月
+				}
+				showDay_arr.push(obj);
+			}
+			for (var i = 1; i <= nowMonth_num; i++) {
+				var week_num = new Date(year, month, i).getDay(); //获取星期几
+				var state = '';
+				var for_today = year + "" + (sava_month < 10 ? 0 + "" + (sava_month) : (sava_month)) + "" + (i < 10 ? 0 + "" + i : i) + "";
+				if (for_today != sava_today) {
+					if (week_num == 6 || week_num == 0) {
+						state = 'otherday'; //周末样式
+					} else {
+						state = 'workday';
+					}
+				} else {
+					state = 'today'; //今天样式
+				}
+				var obj = {
+					year: sava_year,
+					month: sava_month < 10 ? 0 + "" + sava_month:sava_month+"",
+					day: i < 10 ? 0 + "" + i:i+"",
+					state: state,
+				}
+				showDay_arr.push(obj);
+			}
+			if ((nowMonth_num + nowWeek_num) % 7 != 0) {
+				for (var i = 1; i <= 7 - ((nowMonth_num + nowWeek_num) % 7); i++) {
+					var obj = {
+						year: sava_year,
+						month: sava_month + 1 < 10 ? 0 + "" + (sava_month+1):(sava_month+1)+"",
+						day: i < 10 ? 0 + "" + i:i+"",
+						state: 'otherday', //上一个月
+					}
+					showDay_arr.push(obj);
+				}
+			}
+			//遍历-显示
+			var str = "";
+			str = "<tr>";
+			for (var i = 0; i < showDay_arr.length; i++) {
+				str += "<td class=" + showDay_arr[i].state + " data-day=" + showDay_arr[i].day + " data-month=" + showDay_arr[i].month + " data-year=" + showDay_arr[i].year + "> <span>" + showDay_arr[i].day + "</span></td>";
+				if (i % 7 == 6) {
+					str += '</tr><tr>';
+				}
+			}
+			str += '</tr>';
+			$(".dataTbody").append(str);
+
+			var first_day=$(".dataTbody").find("td:first");
+			var sava_first_day=first_day.data("year")+"-"+first_day.data("month")+"-"+first_day.data("day");//记录第一天;
+			var last_day=$(".dataTbody").find("td:last");
+			var sava_last_day=last_day.data("year")+"-"+last_day.data("month")+"-"+last_day.data("day");//记录最后一天;
+			//console.log(sava_first_day,sava_last_day);
+
+			dataArray = { "repayInfos": [{ "repayCount": 1, "repayInterest": 3.45, "repayStatus": 1, "repayAmount": 100.00, "endTime": "2017-09-07" }, { "repayCount": 1, "repayInterest": 3.45, "repayStatus": 0, "repayAmount": 100.00, "endTime": "2017-09-01" }, { "repayCount": 1, "repayInterest": 3.45, "repayStatus": 2, "repayAmount": 100.00, "endTime": "2017-09-06" }, { "repayCount": 1, "repayInterest": 3.45, "repayStatus": 1, "repayAmount": 200.00, "endTime": "2017-10-06" }, { "repayCount": 1, "repayInterest": 3.45, "repayStatus": 1, "repayAmount": 200.00, "endTime": "2017-08-06" }], "code": "W033700", "msg": "成功" }
+			var arr_ex = dataArray.repayInfos;
+			for (var d = 0; d < arr_ex.length; d++) {
+				var split_date = arr_ex[d].endTime.split("-");
+				var sava_date = split_date[0] + split_date[1] + split_date[2];
+				$(".dataTbody").find("td").each(function() {
+					var search_date = $(this).data("year") + "" + $(this).data("month") + "" + $(this).data("day") + "";
+					if (search_date == sava_date) {
+						if (sava_date == sava_today) {
+							$(this).addClass('nowpayment');
+						} else {
+							if (arr_ex[d].repayStatus == 1) {
+								$(this).addClass('payment');
+							} else {
+								$(this).addClass('beenpayment');
+							}
+						}
+					}
+				});
+			}
+		}
+		//上一个月
+		$(".calendar-prevMonth").on("click", function() {
+			$(".dataTbody").html("");
+			sava_month--;
+			if (sava_month <= 0) {
+				sava_year = sava_year - 1;
+				sava_month = 12;
+			}
+			$(".record-year").text(sava_year);
+			$(".record-month").text(sava_month);
+			init(sava_year, sava_month - 1);
+		});
+		//下一个月
+		$(".calendar-nextMonth").on("click", function() {
+			$(".dataTbody").html("");
+			sava_month++;
+			if (sava_month > 12) {
+				sava_year = sava_year + 1;
+				sava_month = 1;
+			}
+			$(".record-year").text(sava_year);
+			$(".record-month").text(sava_month);
+			init(sava_year, sava_month - 1);
+		});
+		//点击事件
+		$(document).on("click", "td", function() {
+			var getYear_val = $(this).data("year") + "";
+			var getMonth_val = $(this).data("month") + "";
+			var getday_val = $(this).data("day") + "";
+			var click_val = getYear_val + getMonth_val + getday_val;
+			$("td").siblings().removeClass('withoutpayment todaypayment willpayment');
+			if (click_val == sava_today) {
+				$(this).addClass('todaypayment');
+			} else if ($(this).hasClass('payment')) {
+				$(this).addClass('willpayment');
+			} else {
+				$(this).addClass('withoutpayment');
+			}
+			showPayment(getYear_val, getMonth_val, getday_val);
+		});
+		//展示信息
+		function showPayment(year, month, day) {
+			target_date = year + "" + month + "" + day + "";
+			var arr_ex = dataArray.repayInfos;
+			for (var arr = 0; arr < arr_ex.length; arr++) {
+				var split_date = arr_ex[arr].endTime.split("-");
+				var sava_date = split_date[0] + split_date[1] + split_date[2];
+				if (target_date == sava_date) {
+					$(".payment-mes-box").text(year + "-" + month + "-" + day + " " + arr_ex[arr].repayCount + " " + arr_ex[arr].repayAmount + " " + arr_ex[arr].repayInterest);
+					return;
+				} else {
+					$(".payment-mes-box").text("无还款");
+				}
+			}
+		}
+		// 计算月天数
+		function countMonthNunber(year, month, num) {
+			var countMonth_num = 0;
+			return countMonth_num = new Date(year, month, num);
+		}
+	});
+	</script>
+</head>
+
+<body>
+	<section class="page-wrapper">
+		<div class="calendar calendar3" style="position: relative;">
+			<div class="calendar-title"><a class="calendar-prevMonth" href="javascript:;">&lt;</a><span class="record-year"></span>年<span class="record-month"></span>月</span><a class="calendar-nextMonth" href="javascript:;">&gt;</a></div>
+			<div class="widget-panel" style="position: relative;">
+				<table>
+					<thead>
+						<tr>
+							<th>日</th>
+							<th>一</th>
+							<th>二</th>
+							<th>三</th>
+							<th>四</th>
+							<th>五</th>
+							<th>六</th>
+						</tr>
+					</thead>
+					<tbody class="dataTbody">
+						<!-- 
+						<tr>
+							<td class="todaypayment" data-id="0"> <span>27</span> </td>
+							<td class="today" data-id="1"> <span>28</span> </td>
+							<td class="payment" data-id="2"> <span>29</span> </td>
+							<td class="willpayment" data-id="3"> <span>30</span> </td>
+							<td class="withoutpayment" data-id="4"> <span>31</span> </td>
+							<td class="beenpayment" data-id="5"> <span>1</span> </td>
+							<td class="td-disabled" data-id="6"> <span>2</span> </td>
+						</tr>
+						<tr>
+							<td class="td-disabled" data-id="7"> <span>3</span> </td>
+							<td class="widget-today" data-id="8"> <span>4</span> </td>
+							<td data-id="9"> <span>5</span> </td>
+							<td data-id="10"> <span>6</span> </td>
+							<td data-id="11"> <span>7</span> </td>
+							<td data-id="12"> <span>8</span> </td>
+							<td class="td-disabled" data-id="13"> <span>9</span> </td>
+						</tr>
+						<tr>
+							<td class="td-disabled" data-id="14"> <span>10</span> </td>
+							<td data-id="15"> <span>11</span> </td>
+							<td data-id="16"> <span>12</span> </td>
+							<td data-id="17"> <span>13</span> </td>
+							<td data-id="18"> <span>14</span> </td>
+							<td class="widget-highlight" data-id="19"> <span>15</span> </td>
+							<td class="widget-highlight td-disabled" data-id="20"> <span>16</span> </td>
+						</tr>
+						<tr>
+							<td class="td-disabled" data-id="21"> <span>17</span> </td>
+							<td data-id="22"> <span>18</span> </td>
+							<td data-id="23"> <span>19</span> </td>
+							<td data-id="24"> <span>20</span> </td>
+							<td data-id="25"> <span>21</span> </td>
+							<td data-id="26"> <span>22</span> </td>
+							<td class="td-disabled" data-id="27"> <span>23</span> </td>
+						</tr>
+						<tr>
+							<td class="td-disabled" data-id="28"> <span>24</span> </td>
+							<td data-id="29"> <span>25</span> </td>
+							<td data-id="30"> <span>26</span> </td>
+							<td data-id="31"> <span>27</span> </td>
+							<td data-id="32"> <span>28</span> </td>
+							<td data-id="33"> <span>29</span> </td>
+							<td class="td-disabled" data-id="34"> <span>30</span> </td>
+						</tr>
+					-->
+					</tbody>
+				</table>
+				<div class="payment-mes-box"></div>
+			</div>
+		</div>
+	</section>
+</body>

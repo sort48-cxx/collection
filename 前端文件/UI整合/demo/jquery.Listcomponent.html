@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<title>jquery-下拉插件-微镇</title>
+<head>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.Listcomponent.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery.Listcomponent.css">
+</head>
+
+<body>
+	<div class="layout-box">
+	<select class="jquery-select">
+		<option data-state="yes" value="1">中国银行</option>
+		<option data-state="yes" value="2">中国建设银行</option>
+		<option data-state="no" class="unClick" value="3">中国工商银行</option>
+		<option data-state="yes" value="4">中国农业银行</option>
+		<option data-state="no" class="unClick" value="5">交通银行</option>
+	</select>
+</div>
+</body>
+
+<script>
+	$(function() {
+		$(".jquery-select").WZDropdown({
+			'defaultText':'请选择银行',
+		});
+	});
+</script>
+
+</html>

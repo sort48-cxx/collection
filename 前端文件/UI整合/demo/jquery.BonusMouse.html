@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<title>红包划过效果</title>
+
+<head>
+	<script src="../js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+</head>
+
+<style>
+.bonus-box{height: 250px;width: 450px;overflow: hidden;background-color: #fff;margin: 50px auto;}
+.bonus-in-side{font-size: 28px;text-align: center;color: #fff;width:100%;height: 35px;background-color: #ffb923}
+.bonus-out-side{background-color: #3eb8fe;width:100%;height: 35px;margin-top: 215px;font-size: 28px;text-align: center;color: #fff;}
+</style>
+
+<body>
+	<div class="bonus-box">
+		<div class="bonus-in-side">正面</div>
+		<div class="bonus-out-side hide">背面</div>
+	</div>
+</body>
+
+
+<script>
+$(function() {
+	//划出
+	$(".bonus-box").on("mouseleave", function(e) {
+		$(".bonus-in-side").show();
+		$(".bonus-out-side").hide();
+	});
+	//划入
+	$(".bonus-in-side").on("mouseover", function(e) {
+		$(".bonus-in-side").hide();
+		$(".bonus-out-side").show();
+	});
+});
+</script>
+
+
+</html>

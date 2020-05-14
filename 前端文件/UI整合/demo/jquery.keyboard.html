@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<title>移动端键盘</title>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="format-detection" content="email=no" />
+	<script src="../js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+</head>
+
+<style>
+html { font-size: 62.5%;}
+.public-720{max-width: 720px; margin: 0 auto;}
+.bg-fff{background-color: #fff}
+.pay-dialog-box .dialog-mask { position: fixed; z-index: 1000; top: 0; right: 0; left: 0; bottom: 0; background: rgba(0, 0, 0, 0.6);}
+.pay-dialog-box .dialog-content-box { position: fixed; bottom: 0; width: 100%; max-width: 720px; z-index: 5000;}
+.pay-dialog-box .dialog-title-box { height: 30px; line-height: 30px; overflow: hidden; background-color: #fff; padding: 5px 15px; border-bottom: 1px solid #dbdbdb; color: #333;}
+.pay-dialog-box .close-but-icon { width: 18px; height: 18px; overflow: hidden; vertical-align: middle;}
+.pay-dialog-box .dialog-input-box { margin: 15px 25px 5px 25px; padding: 0 10px; height: 40px; line-height: 40px; border: 1px solid #e6e6e6; border-radius: 4px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center;}
+.pay-dialog-box .flex-1 { -webkit-box-flex: 1; -webkit-flex: 1; flex: 1;}
+.pay-dialog-box .paw-input { height: 30px; overflow: hidden; border: 0; width: 94%; font-size: 2.5rem; margin: 10px 0;}
+.pay-dialog-box .input-clear-img { width: 15px; height: 15px; overflow: hidden; vertical-align: middle;}
+.pay-dialog-box .input-pay-but { height: 30px; line-height: 30px; width: 42px; overflow: hidden; color: #ccc; border-left: 1px solid #ccc; padding-left: 18px;padding-right: 5px; margin-left: 10px;}
+.pay-dialog-box .forget-pwd { display: block; text-align: right; color: #3fb8ff; margin-bottom: 20px; margin-right: 25px; font-size: 1.2rem;}
+.pay-dialog-box table { width: 100%; text-align: center;}
+.pay-dialog-box table tr td { border: 1px solid #d5d8db; padding: 2px 0;}
+.pay-dialog-box table td { width: 33.3%; height: 35px; font-size: 1.6rem; color: #000;}
+.pay-dialog-box .bg-d5d8db { background-color: #d5d8db;}
+.pay-dialog-box .keyboard-del-img { width: 25px; height: 18px; overflow: hidden; vertical-align: middle;}
+
+</style>
+
+<body>
+	<div class="public-720">
+		<!-- 支付弹窗 -->
+		<div class="pay-dialog-box">
+			<div class="dialog-mask"></div>
+			<div class="dialog-content-box bg-fff">
+				<div class="dialog-title-box clearfix">
+					<div class="left">请输入支付密码</div>
+					<div class="right"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAsBAMAAAA++k1qAAAAJ1BMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMy0YZBFAAAADXRSTlMA/kIn5oT1W8hnURWwQz0ecQAAAKRJREFUOMud0bENg0AQRNGVXYEDy4lTuwBEREYHtEAHtEAJlEFGiUicli/dlwjYZE+3eslMXE3jr66seaoPz3479v9TX9p32Y9xqskQARIBiYBEQCIgiBBECCIEAUGEIEIQoSRCEKEkRkmMkmiWb77U/ivTU/ukV7dP5Gq/IBMiF0lkkkgEJAISAYmAREAQIwjIBAQRghhBjOaTgLZjr6H5xb3ZAQ7KJ0aphOOuAAAAAElFTkSuQmCC" alt="" class="close-but-icon" /></div>
+				</div>
+				<div class="dialog-input-box clearfix">
+					<div class="flex-1">
+						<input type="password" class="paw-input" readonly/>
+					</div>
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeBAMAAADJHrORAAAAMFBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMySLVSoAAAAD3RSTlMApvKLCJ2W0GVXF7o4RSuoId/zAAAAxklEQVQY02MAAZapRf/VIx0YoIDL6D8IKC+A8pv+Q4AGhOv4HwZEwJr3w/m/QUYw/kcAASC/H4n/A2i4PhL/0wIGZiAlIw8kvp4GEgYMTkDyAciMBF4gocIwH8RkkP//DWzwT4Z4IPkZyAaKgTQx1P8HaxOD2PudAWz8Z6C98mALGCAWGcCcBeUnwPgQ9d8Q6ush0sJQ80D2ge02gNgHdk8AkP0Z4h6Eew3A7kX45xvYP+j+RQsP9PBCD0+08EaPD8z4Qo9PAKDYJQ2hi77mAAAAAElFTkSuQmCC" alt="" class="input-clear-img" />
+					<div class="">
+						<a href="javascript:void(0)" class="input-pay-but">支付</a>
+					</div>
+				</div>
+				<a href="javascript:void(0)" title="" class="forget-pwd">忘记密码？</a>
+				<table id="table-keyboard">
+					<tbody>
+						<tr>
+							<td class="num-td">1</td>
+							<td class="num-td">2</td>
+							<td class="num-td">3</td>
+						</tr>
+						<tr>
+							<td class="num-td">4</td>
+							<td class="num-td">5</td>
+							<td class="num-td">6</td>
+						</tr>
+						<tr>
+							<td class="num-td">7</td>
+							<td class="num-td">8</td>
+							<td class="num-td">9</td>
+						</tr>
+						<tr>
+							<td class="bg-d5d8db"></td>
+							<td class="num-td">0</td>
+							<td class="delte_but bg-d5d8db"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAcCAMAAADVwFZpAAAAM1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACjBUbJAAAAEHRSTlMAENDAv4BgMPCfcFBA4JBvJvmpJAAAAJVJREFUOMud08EKwjAQRdGZalNNos3/f60IfbzFlSC5qy4OlBkysVS+7+xMsG386nVMmdvmzLUpczvYzJHRkbXjoc+ScmTjGYIlqpwZYYky5MAExeTEAMXs6hiEaWbHeqSm5n9diX4NIweoSb0e7sVMU2PPYIJygPXLLtjtAPfT62mL74qQjpC1hTua3SXv/MZqxv99ADC5KNXmNFivAAAAAElFTkSuQmCC" alt="" class="keyboard-del-img"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 支付弹窗结束 -->
+	</div>
+</body>
+
+
+
+
+<script>
+$(function() {
+var pawkeyboard = (function() {
+		var now_val = new Array();
+		var string_val = "";
+		var i = 0;
+		var setval = function() {
+			if (now_val.length == 6) {
+				$(".input-pay-but").css("color", "#f24b43");
+			} else {
+				$(".input-pay-but").css("color", "#ccc");
+			}
+			string_val = now_val.join("");
+			$(".paw-input").val(string_val);
+		};
+		return {
+			add: function(val) {
+				if (now_val.length >= 6) {
+					return false;
+				} else {
+					now_val.push(val);
+					setval();
+					return true;
+				}
+			},
+			reduce: function() {
+				now_val.pop();
+				setval();
+				return true;
+			},
+			clear: function() {
+				now_val.splice(0, now_val.length);
+				setval();
+				return true;
+			},
+		};
+	})();
+	// 数字键点击
+	$("#table-keyboard").delegate('.num-td', 'click', function(event) {
+		pawkeyboard.add($(this).text());
+	});
+	// 删除键
+	$(".delte_but").on('click', function(e) {
+		e.stopPropagation();
+		pawkeyboard.reduce();
+	});
+	// 清空键
+	$(".input-clear-img").on('click', function() {
+		pawkeyboard.clear();
+	});
+	// 关闭支付弹窗
+	$(".close-but-icon").on('click', function() {
+		$(".pay-dialog-box").hide();
+		pawkeyboard.clear();
+	});
+});
+</script>
+
+
+</html>

@@ -1,0 +1,65 @@
+/*
+Author :Cxx
+Time   :0921/16
+*/
+
+/*悬浮导航html代码*/
+<div class="aside-tool-box hide">
+	<ul>
+		<li class="wechat-item"><a><i></i></a>
+			<a class="aside-item-img hide">
+				<div>
+					<img src="img/activity4/order-icon.png" alt=""/>
+					<p class="font-16">[订阅号]</p>
+				</div>
+			</a>
+		</li>
+		<li class="app-item"><a><i></i></a>
+			<a class="aside-item-img hide"><img src="" alt=""/>
+				<p>APP下载</p>
+			</a>
+		</li> 
+		<li class="return-item"><a><i></i></a></li>
+	</ul>
+</div>
+
+
+/*划过JS代码*/
+
+//隐藏与现实悬浮导航
+function scrollGoTop() {
+	var scrolltop = $(this).scrollTop();
+		if (scrolltop > 700) {
+			$(".aside-tool-box").show();
+		} else {
+			$(".aside-tool-box").hide();
+		}
+}
+window.onscroll = scrollGoTop;
+
+//悬浮导航划过
+	$(".aside-tool-box ul li").mouseenter(function() {
+		$(this).children(".aside-item-img").show().animate({ "width": "140px", "left": "-140px", "top": 0 }, 100);
+		$(this).siblings().children(".aside-item-img").hide();
+	})
+	$(".aside-tool-box ul li").mouseleave(function() {
+		$(this).children(".aside-item-img").animate({ "width": "0", "left": "0" }, 100).hide();
+	})
+//回到顶部
+	$(".return-item").click(function() {
+		$('body,html').animate({ scrollTop: 0 }, 300);
+		return false;
+	});
+
+/*悬浮导航CSS代码*/
+em, i {font-style: normal;}
+.aside-tool-box {position: fixed;bottom:300px;right: 30px;width: 50px;z-index: 100;}
+.aside-tool-box ul li {position: relative;float: left;width: 40px;height: 40px;background-color: #333;margin-bottom: 2px;color: #fff;font-size: 16px;}
+.aside-tool-box ul li:hover {background-color: #ffb923;}
+.aside-tool-box ul li a i {position: absolute;background: url("../img/activity4/asilde-icon.png") no-repeat;display: block;top: 50%;left: 50%;}
+.aside-tool-box ul li.wechat-item a i {width: 22px;height: 18px;background-position: -7px -14px;margin-top: -8px;margin-left: -11px;}
+.aside-tool-box ul li.app-item a i {width: 15px;height: 22px;background-position: -7px -37px;margin-left: -8px;}
+.aside-tool-box ul li.return-item a i {width: 22px;height: 12px;background-position: -7px -66px;margin-left: -11px;margin-top: -7px;}
+.aside-tool-box ul li a.aside-item-img {position: absolute;top: 0;left: 0;width: 0;background-color: #ffb923;font-size: 14px;padding: 10px 0;text-align: center;z-index: -1000;display: none;}
+.aside-tool-box ul li.app-item .aside-item-img {top: -121px;height: 145px;}
+.aside-tool-box ul li.wechat-item .aside-item-img {top: -120px;height: 145px;}

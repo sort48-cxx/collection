@@ -1,0 +1,51 @@
+/*
+Author :Cxx
+Time   :0921/16
+*/
+
+/*弹窗html代码*/
+<div class="public-mask-box hide">
+	<div class='public-mask-bg'></div>
+	<a class="wzfont public-close-but mask-but">&#xe612;</a>
+	<div class="public-mask-border"></div>
+	<div class="public-mask-content">
+		<div class="public-xieyi-content">
+			<div class="public-heard-title">微镇商票宝平台服务协议</div>
+			<div class="public-xieyi-text"></div>
+		</div>
+	</div>
+</div>
+
+/*垂直水平居中JS代码*/
+function showmask(obj, obj1,obj2) {
+	var _scrollHeight = $(document).scrollTop(),
+		_windowHeight = $(window).height(),
+		_windowWidth = $(window).width(),
+		_popupHeight = obj1.height(),
+		_popupWeight = obj1.width(),
+		_posiTop = (_windowHeight - _popupHeight) / 2 - 40,
+		_posiLeft = (_windowWidth - _popupWeight) / 2;
+	obj1.css({ "left": _posiLeft + "px", "top": _posiTop + "px", "display": "block" });
+	obj2.css({ "left": _posiLeft + _popupWeight - 3 + "px", "top": _posiTop - 27 + "px", "display": "block" });
+	$(".public-mask-border").css({ "left": _posiLeft-10 + "px", "top": _posiTop-10 + "px", "display": "block" });
+	obj.show();
+}
+//打开协议弹窗
+$("#check_xieyi_but").click(function(){showmask($(".public-mask-box"), $(".public-mask-content"), $(".public-close-but"));})
+//关闭协议弹窗
+$(".public-close-but").click(function() {$(".public-mask-box").hide();});
+
+/*弹窗CSS代码*/
+.public-mask-bg {position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: 2;background-color: rgb(0, 0, 0);opacity: 0.7;filter:alpha(opacity=70);}
+.public-close-but {position: fixed;font-size: 40px;color: #fff;z-index: 3;}
+.public-mask-border{background-color: #000;opacity: 0.2;filter:alpha(opacity=20);width: 720px;height: 570px;overflow: hidden;border-radius: 5px;position: fixed;}
+.public-mask-content{position: fixed;z-index: 2;height: auto;width: 700px;height: 550px;overflow: hidden;border-radius: 5px}
+.public-xieyi-content {background: #fff;color: #333;border-radius: 5px;height: 550px;overflow: hidden;}
+.public-heard-title {height: 60px;overflow: hidden;text-align: center;line-height: 60px;background: #f0f0f0;box-shadow: 0 1px 3px #ccc;border-radius: 5px 5px 0 0;color: #333;font-size: 16px;}
+.public-xieyi-text {padding: 10px 20px 30px 20px;line-height: 175%;height: 450px;overflow-y:scroll;color: #333;}
+.public-xieyi-text p{word-break: break-word;}
+.public-xieyi-textindex{text-indent: 31px}
+.public-xieyi-bold{font-weight: bold;}
+.public-color-red{color: red}
+
+

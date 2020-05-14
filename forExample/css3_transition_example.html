@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<style>
+
+*{padding:0;margin:0}
+/** 按钮交互效果（背景填充）*/
+.show1 {margin:100px;width:100px;height:100px;background-color:orange;text-align:center;line-height:100px;color:#fff;position:relative;z-index:1;}
+
+/**  第一种写法 */
+.show1::before {content:"";height:100%;width:100%;background-color:palegreen;position:absolute;transition:all .5s;transition-timing-function:ease-in;top:0;left:0;transform-origin:0 50%;transform:scaleX(0);z-index:-1}
+.show1:hover::before {transform:scaleX(1);}
+/**  第二种写法
+.show1::before {content:"";height:100%;width:0%;background-color:palegreen;position:absolute;transition:all .3s;top:0;left:0;transform-origin:0 50%;z-index:-1}
+.show1:hover::before {width:100%;}
+ */
+
+/*效果-洗牌*/
+.show2{margin:50px;}
+.show2 div:first-child{width:100px;height:130px;background-color:orange;border:1px solid #666;position: absolute;
+	animation-name:move1;
+	animation-duration:5s;
+	animation-delay:0s;
+	animation-fill-mode:both;
+
+	animation-timing-function:ease-in-out;
+	animation-iteration-count:infinite;
+	animation-play-state:running;
+	/* animation-direction:alternate; */
+
+}
+
+.show2 div:last-child{width:100px;height:130px;background-color:olivedrab;border:1px solid #666;position: absolute;
+	animation-name:move1;
+	animation-duration:5s;
+	animation-delay:2.5s;
+	animation-fill-mode:both;
+
+	animation-timing-function:ease-in-out;
+	animation-iteration-count:infinite;
+	animation-play-state:running;
+	/* animation-direction:alternate; */
+
+}
+
+@keyframes move1{
+	0%{
+		transform:translate(0,0);
+		z-index: 1;
+	}
+	12.5%{
+		transform: translate(100px,0);
+	}
+	25%{
+		z-index: -1;
+		transform: translate(0,0);
+	}
+	100%{
+		transform:translate(0,0);
+		z-index: 1;
+	}
+}
+</style>
+<body>
+	<div class="show1">测试文字</div>
+
+	<div class="show2">
+		<div></div><div></div>
+	</div>
+	
+
+</body>
+</html>

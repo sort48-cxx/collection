@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>css3-animation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="common.css" type="text/css" rel="stylesheet">
+</head>
+<style>
+	.box {
+		height: 100px;
+		width: 100px;
+		border: 15px solid black;
+		animation: changebox 1s ease-in-out 1s 1 alternate running backwards;
+
+
+
+		animation-name:testName;
+		animation-duration:2s;
+		animation-delay:1s;
+		animation-timing-function:linear;
+
+		animation-play-state:running;
+		animation-direction:reverse;
+		animation-iteration-count: infinite;
+		animation-fill-mode:both;
+
+	}
+
+	/* .box:hover {
+		animation-play-state: paused;
+	} */
+
+	@keyframes changebox {
+		10% {
+			background: red;
+		}
+
+		50% {
+			width: 80px;
+		}
+
+		70% {
+			border: 15px solid yellow;
+		}
+
+		100% {
+			width: 180px;
+			height: 180px;
+		}
+	}
+	.div1{
+		width:100px;
+		height:100px;
+		background-color:orange;
+		border-radius: 50%;
+		margin:50px;
+		/* animation-name:running;      
+		animation-duration:3s;
+		animation-timing-function:linear;
+		animation-delay:0s;
+		animation-iteration-count: infinite;
+		animation-direction:alternate;
+		animation-fill-mode:both;
+		animation-play-state:running; */
+		animation:runningName linear 3s  0s infinite both alternate ;
+		
+	}
+	@keyframes runningName{
+		from{
+			transform: translate(0,0)
+		}
+		to{
+			transform: translate(300px,0);
+		}
+	}
+	
+	.div2{
+		width:20px;
+		height:10px;
+		border:1px solid #e6e6e6;
+		background-color: #fff;
+		animation:rotetd 2s infinite,cColor 2s infinite,cHeight 2s infinite ;
+	}
+	@keyframes rotetd{
+		100%{
+			transform:rotate(360deg);
+		}
+	}
+	@keyframes cColor{
+		20%{
+			background-color:orange
+		}
+		80%{
+			background-color:royalblue;
+		}
+	}
+	@keyframes cHeight{
+		0% {
+    width: 40%;
+  }
+  100% {
+    width: 70%;
+  }
+	}
+</style>
+
+<body>
+	<div class="box"></div>
+	<div class="div1"></div>
+	<div class="div2"></div>
+</body>
+
+</html>

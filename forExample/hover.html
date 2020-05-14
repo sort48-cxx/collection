@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<style>
+	.main {
+		width: 1200px;
+		margin: 100px auto
+	}
+
+	.temp {
+		margin: 10px;
+		padding: 10px 0;
+		width: 100px;
+		cursor: pointer;
+		background: #ffb923;
+		text-decoration: none;
+		color: #fff;
+		border-radius: 10px;
+		display: inline-block;
+		text-align: center;
+	}
+
+	/*扩大*/
+	.expand:hover {
+		transform: scale(1.1);
+		transition: all .3s linear;
+	}
+
+	/*缩小*/
+	.shrink:hover {
+		transform: scale(0.9);
+		transition: all .3s linear;
+	}
+
+	/*扩大-循环*/
+	.expand-animation:hover {
+		animation: expandA 1s infinite
+	}
+
+	@keyframes expandA {
+		20% {
+			transform: scale(1.1);
+			transition: all .3s ease;
+		}
+
+		80% {
+			transform: scale(1);
+			transition: all .3s ease;
+		}
+	}
+
+	/*缩小-循环*/
+	.shrink-animation:hover {
+		animation: shrinkA 1s infinite
+	}
+
+	@keyframes shrinkA {
+		20% {
+			transform: scale(0.9);
+			transition: all .3s ease;
+		}
+
+		80% {
+			transform: scale(1);
+			transition: all .3s ease;
+		}
+	}
+
+	/*缩小-扩大*/
+	.push:hover {
+		animation: pushA 1s 1;
+	}
+
+	@keyframes pushA {
+		50% {
+			transform: scale(.8);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	/*扩大-缩小*/
+	.pop:hover {
+		animation: popA 1s 1
+	}
+
+	@keyframes popA {
+		50% {
+			transform: scale(1.2);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	/*旋转*/
+	.rotate:hover {
+		transition: all .5s linear;
+		transform: rotate(-5deg)
+	}
+
+	/*扩大-旋转*/
+	.expand-rotate:hover {
+		transition: all .4s linear;
+		transform: scale(1.1) rotate(-5deg);
+	}
+
+	/*上移*/
+	.up:hover {
+		transition: all .4s linear;
+		transform: translateY(-10px)
+	}
+
+	/*下移*/
+	.down:hover {
+		transition: all .4s linear;
+		transform: translateY(10px)
+	}
+
+	/*skew*/
+	.skew:hover {
+		transition: all .4s linear;
+		transform: skew(10deg)
+	}
+
+	/*x-wobble*/
+	.x-wobble:hover {
+		animation: x-wobbleA .5s ease-in-out;
+	}
+
+	@keyframes x-wobbleA {
+		0% {
+			transform: translateX(-20px);
+		}
+
+		25% {
+			transform: translateX(0px);
+		}
+
+		50% {
+			transform: translateX(-10px);
+		}
+
+		75% {
+			transform: translateX(0);
+		}
+
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	/*y-wobble*/
+	.y-wobble:hover {
+		animation: y-wobbleA .5s ease-in-out;
+	}
+
+	@keyframes y-wobbleA {
+		0% {
+			transform: translateY(-20px)
+		}
+
+		25% {
+			transform: translateY(10px)
+		}
+
+		50% {
+			transform: translateY(-15px)
+		}
+
+		75% {
+			transform: translateY(4px)
+		}
+
+		100% {
+			transform: translateY(0)
+		}
+	}
+
+	/*头部左右倾斜*/
+	.wobble-top:hover {
+		animation-name: wobble-top;
+		animation-duration: 1s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: 1;
+		transform-origin: 0 100%;
+	}
+
+	@keyframes wobble-top {
+		16.65% {
+			transform: skew(-12deg);
+		}
+
+		33.3% {
+			transform: skew(10deg);
+		}
+
+		49.95% {
+			transform: skew(-6deg);
+		}
+
+		66.6% {
+			transform: skew(4deg);
+		}
+
+		83.25% {
+			transform: skew(-2deg);
+		}
+
+		100% {
+			transform: skew(0);
+		}
+	}
+
+	/*头部左右倾斜*/
+	.wobble-buttom:hover {
+		animation-name: wobble-buttom;
+		animation-duration: 1s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: 1;
+		transform-origin: 100% 0;
+	}
+
+	@keyframes wobble-buttom {
+		16.65% {
+			transform: skew(-12deg);
+		}
+
+		33.3% {
+			transform: skew(10deg);
+		}
+
+		49.95% {
+			transform: skew(-6deg);
+		}
+
+		66.6% {
+			transform: skew(4deg);
+		}
+
+		83.25% {
+			transform: skew(-2deg);
+		}
+
+		100% {
+			transform: skew(0);
+		}
+	}
+
+	.outside {
+		position: relative;
+		width: 100px;
+		height: 41px;
+		line-height: 41px;
+		display: inline-block;
+		cursor: pointer;
+		background: #ffb923;
+		text-decoration: none;
+		color: #fff;
+		border-radius: 10px;
+		text-align: center;
+		margin-right:30px;
+	}
+
+	.outside-up:hover:before {
+		content: "";
+		position: absolute;
+		border-width: 8px;
+		border-color: transparent transparent #ffb923 transparent;
+		border-style: solid;
+		top: -16px;
+		left:50%;
+		transform:translateX(-50%);
+		
+	}
+	.outside-right:hover:before {
+		content: "";
+		position: absolute;
+		border-width: 8px;
+		border-color: transparent  transparent transparent #ffb923;
+		border-style: solid;
+		top: 50%;
+		right:-16px;
+		transform:translateY(-50%);
+		
+	}
+	.outside-down:hover:before {
+		content: "";
+		position: absolute;
+		border-width: 8px;
+		border-color: #ffb923 transparent transparent transparent;
+		border-style: solid;
+		bottom: -16px;
+		left:50%;
+		transform:translateX(-50%);
+		
+	}
+	.outside-left:hover:before {
+		content: "";
+		position: absolute;
+		border-width: 8px;
+		border-color: transparent #ffb923 transparent transparent;
+		border-style: solid;
+		top: 50%;
+		left:-16px;
+		transform:translateY(-50%);
+		
+	}
+</style>
+
+<body>
+	<div class="main">
+		<a class="temp expand">扩大</a>
+		<a class="temp shrink">缩小</a>
+		<a class="temp expand-animation">扩大-循环</a>
+		<a class="temp shrink-animation">缩小-循环</a>
+		<a class="temp push">缩小-扩大</a>
+		<a class="temp pop">扩大-缩小</a>
+		<a class="temp rotate">旋转</a>
+		<a class="temp expand-rotate">扩大-旋转</a>
+		<a class="temp up">上移</a>
+		<a class="temp down">下移</a>
+		<a class="temp skew">倾斜</a>
+		<a class="temp x-wobble">左右抖动</a>
+		<a class="temp y-wobble">上下抖动</a>
+		<a class="temp wobble-top">头部左右倾斜</a>
+		<a class="temp wobble-buttom">底部左右倾斜</a>
+	</div>
+
+	<div class="main">
+		<a class="outside outside-up">上方</a>
+		<a class="outside outside-right">右方</a>
+		<a class="outside outside-down">底方</a>
+		<a class="outside outside-left">左方</a>
+	</div>
+
+</body>
+
+</html>

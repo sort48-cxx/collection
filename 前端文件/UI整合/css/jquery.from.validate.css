@@ -1,0 +1,5 @@
+/*表单提示语*/
+.validate-success-icon{font-size:24px;color:#3fc27c;vertical-align:middle;margin-left:10px}
+.validate-error-icon{font-size:24px;color:#f24b43;vertical-align:middle;margin-left:10px}
+.validate-warn-text{vertical-align:middle;font-size:14px;color:#f24b43}
+.validate-warn-box{height: 30px;line-height:30px;overflow: hidden;vertical-align: middle;}

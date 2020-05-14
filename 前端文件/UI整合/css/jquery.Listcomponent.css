@@ -1,0 +1,11 @@
+html{background-color: #fff}
+.jquery-select-input{width:320px;height: 38px;overflow: hidden;border: 1px solid #ccc;cursor: pointer;line-height: 38px;color: #666;font-size: 18px;padding-left: 10px;z-index: 1;border-radius: 4px;background-color: #f6f6f6}
+.jquery-select-input span{display: inline-block;*display: inline;*zoom:1;}
+.jquery-select-input .jquery-select-text{float:left;width: 280px;overflow: hidden;}
+.jquery-select-input .jquery-select-icon{float:right;background: url('../img/triangleDown1.png') no-repeat center;width: 30px;height: 38px;overflow: hidden;/*margin-top: 12px;margin-right: 10px;*/background-color: #fff}
+.jquery-select-input:after,.jquery-select-input:before{ visibility: hidden; display: block; font-size: 0; content: "."; clear: both; height: 0}
+.jquery-selcet-ul{width:330px;border-left: 1px solid #ccc;border-right: 1px solid #ccc;border-bottom: 1px solid #ccc;display: none;z-index: 1;border-radius: 4px 4px 0 0;position: absolute;}
+.jquery-selcet-ul li{padding-left: 10px;cursor: pointer;height: 33px;line-height: 33px;color: #666;background-color: #fff}
+.jquery-selcet-ul li:hover{background-color: #ffb923}
+.jquery-selcet-ul .unClick{background-color: #f6f6f6;cursor: default}
+.jquery-selcet-ul .unClick:hover{background-color: #f6f6f6;}
